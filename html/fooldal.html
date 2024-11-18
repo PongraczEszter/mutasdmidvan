@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Főoldal</title>
+    <link rel="shortcut icon" href="./kepek/logok/mutasdmidvan.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/fooldal.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span>Szia, Felhasználó!</span>
+            <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        </div>
+        <ul class="sidebar-menu">
+            <a class="sidebar-items" href=""><li><span>👤</span> Profil megtekintése</li></a>
+            <a class="sidebar-items" href=""><li><span>🍽️</span> Véletlenszerű recept</li></a>
+            <a class="sidebar-items" href=""><li><span>🥤</span> Hozzávalók kiválasztása</li></a>
+            <a class="sidebar-items" href=""><li><span>⚙️</span> Beállítások</li></a>
+            <a class="sidebar-items" href=""><li><span>⬅️</span> Kijelentkezés</li></a>
+        </ul>
+    </div>
+
+    <div class="container" id="main-content">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="content">
+            <h1>Receptek - ahogy te szereted</h1>
+            <p>Nézd meg, milyen hozzávalóid vannak, mi pedig megmondjuk, mit készíts belőle!</p>
+            <div class="buttons">
+                <a href="receptek.html"><button class="recipes-button">Mutasd a recepteket!</button></a>
+                <a href="bejelentkezes.html"><button class="login-button">Bejelentkezés</button></a>
+                <a href="regisztracio.html"><button class="registration-button">Regisztráció</button></a>
+            </div>
+        </div>
+        <div class="image">
+            <img src="../kepek/fooldal_spagetti.jfif">
+        </div>
+    </div>
+    <script>
+        function toggleSidebar()
+        {
+            document.getElementById("sidebar").classList.toggle("open");
+            document.getElementById("main-content").classList.toggle("shifted");
+            document.querySelector(".menu-icon").classList.toggle("shifted");
+        }
+    </script>
+</body>
+</html>

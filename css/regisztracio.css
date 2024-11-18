@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: #FFDDBD;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.right-panel {
+    width: 60%;
+    padding: 40px;
+    background-color: #F15025;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.registration-panel {
+    width: 25%;
+    padding: 40px;
+    background-color: #F15025;
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 40px;
+    margin-left: 40px;
+    text-align: center;
+}
+
+.koszones {
+    padding-top: 10px;
+    font-size: 50px;
+}
+
+.regisztracio-felirat {
+    padding-top: 10px;
+    font-size: 50px;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px;
+    background-color: #FFDDBD;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.registration-button{
+    background-color: #FFDDBD;
+    color: #F15025;
+    transition: all 0.1s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.registration-button:hover{
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.registration-button:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    transform: translateY(4px);
+}
+
+.login-button {
+    background-color: #F15025;
+    border: 2px solid white;
+}
+
+.login-button-link {
+    background-color: #F15025;
+    border: 2px solid white;
+}
+
+.login-button:hover {
+    background-color: white;
+    color: #F15025;
+}
+
+.right-panel {
+    text-align: center;
+}
+
+.wall {
+    margin-top: 50px;
+}
+
+.wall p {
+    font-size: 2rem;
+    color: #FFDDBD;
+}
+
+.logo {
+    width: 250px;
+    height: auto; 
+    position: relative; 
+    margin-bottom: 20px;
+}
+
+.icons {
+    margin-top: 20px;
+}
+
+.icons a img {
+    width: 90px;
+    height: 90px;
+    margin: 0 10px;
+}
+
+.mar-regisztralt-felirat
+{
+    margin-top: 10px;
+    padding: 8px;
+}
+
+.kovess-minket {
+    padding-top: 10px;
+    font-size: 50px;
+    font-weight: no;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
