@@ -1,4 +1,4 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ {eleresi utvonal a htdocs-ban}/index.php [NC,L,QSA]
+RewriteRule ^(.*)$ mutasdmidvan/php/mutasd.php [NC,L,QSA]
