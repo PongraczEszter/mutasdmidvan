@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: #EA5021;
+    overflow-x: hidden;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFDAB9;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 5px 0px 20px #333;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    color: #EA5021;
+}
+
+.nav-links li a {
+    color: #EA5021;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.left-panel {
+    width: 60%;
+    padding: 40px;
+    background-color: #FFDAB9;
+    color: #EA5021;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.login-panel {
+    width: 25%;
+    padding: 75px;
+    background-color: #FFDAB9;
+    color: #EA5021;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 40px;
+    margin-left: 40px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.login-panel h2 {
+    color: #EA5021;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.bejelentkezes-felirat {
+    padding-top: 10px;
+    font-size: 50px;
+}
+
+.koszones {
+    padding-top: 10px;
+    font-size: 50px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+.wall {
+    margin-top: 50px;
+}
+
+.wall p {
+    font-size: 2rem;
+}
+
+.login-button {
+    margin-top: 10px;
+    background-color: #EA5021;
+    color: #FFDAB9;
+    transition: all 0.1s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.login-button:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.login-button:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    transform: translateY(4px);
+}
+
+.registration-button {
+    margin-top: 10px;
+    color: #EA5021;
+    background-color: #FFDAB9;
+    border: 2px solid #EA5021;
+
+}
+
+.registration-button-link {
+    background-color: #EA5021;
+    border: 2px solid #FFDAB9;
+}
+
+.registration-button:hover {
+    background-color: #EA5021;
+    color: #FFDAB9;
+}
+
+.registration-button:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    transform: translateY(4px);
+}
+
+.meg-nem-regisztralt-felirat {
+    margin-top: 15px;
+    padding-top: 8px;
+}
+
+.logo {
+    width: 250px;
+    height: auto; 
+    position: relative; 
+    margin-bottom: 20px;
+}
+
+.kovess-minket {
+    margin-top: 20px;
+}
+
+.kovess-minket a img {
+    width: 40px;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 90px;
+    height: 90px;
+    transition: transform 0.3s;
+}
+
+.kovess-minket a img:hover {
+    transform: scale(1.1);
+}
+
+a {
+    text-decoration: none;
+}
+
+footer {
+    background-color: #333;
+    color: #EA5021;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin: 5px 15px;
+}
+
+footer ul li a {
+    color: #EA5021;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+input.error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+    box-shadow: 0 0 5px #FFDAB9(255, 0, 0, 0.5);
+}

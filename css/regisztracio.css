@@ -6,7 +6,42 @@
 }
 
 body {
-    background-color: #FFDDBD;
+    background-color: #FFDAB9;
+    overflow-x: hidden;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FF5A3D;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 5px 0px 20px #333;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    color: #FFDAB9;
+}
+
+.nav-links li a {
+    color: #FFDAB9;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
 }
 
 .container {
@@ -19,17 +54,18 @@ body {
 .right-panel {
     width: 60%;
     padding: 40px;
-    background-color: #F15025;
-    color: white;
+    background-color: #EA5021;
+    color: #FFDAB9;
     border-radius: 20px;
     text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .registration-panel {
     width: 25%;
     padding: 40px;
-    background-color: #F15025;
-    color: white;
+    background-color: #EA5021;
+    color: #FFDAB9;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -37,6 +73,7 @@ body {
     margin-right: 40px;
     margin-left: 40px;
     text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .koszones {
@@ -69,17 +106,17 @@ input {
 
 button {
     padding: 10px;
-    background-color: #FFDDBD;
+    background-color: #FFDAB9;
     border: none;
     border-radius: 10px;
-    color: white;
+    color: #FFDAB9;
     font-size: 1.2rem;
     cursor: pointer;
 }
 
 .registration-button{
-    background-color: #FFDDBD;
-    color: #F15025;
+    background-color: #FFDAB9;
+    color: #EA5021;
     transition: all 0.1s ease;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
@@ -94,18 +131,23 @@ button {
 }
 
 .login-button {
-    background-color: #F15025;
-    border: 2px solid white;
+    background-color: #EA5021;
+    border: 2px solid #FFDAB9;
 }
 
 .login-button-link {
-    background-color: #F15025;
-    border: 2px solid white;
+    background-color: #EA5021;
+    border: 2px solid #FFDAB9;
 }
 
 .login-button:hover {
-    background-color: white;
-    color: #F15025;
+    color: #EA5021;
+    background-color: #FFDAB9;
+}   
+
+.login-button:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    transform: translateY(4px);
 }
 
 .right-panel {
@@ -118,7 +160,7 @@ button {
 
 .wall p {
     font-size: 2rem;
-    color: #FFDDBD;
+    color: #FFDAB9;
 }
 
 .logo {
@@ -141,7 +183,7 @@ button {
 .mar-regisztralt-felirat
 {
     margin-top: 10px;
-    padding: 8px;
+    padding-top: 8px;
 }
 
 .kovess-minket {
@@ -152,7 +194,7 @@ button {
 
 footer {
     background-color: #333;
-    color: white;
+    color: #FFDAB9;
     text-align: center;
     padding: 20px 0;
     margin-top: auto;
@@ -164,15 +206,56 @@ footer ul {
 }
 
 footer ul li {
-    display: inline;
-    margin: 0 15px;
+    margin: 5px 15px;
 }
 
 footer ul li a {
-    color: white;
+    color: #FFDAB9;
     text-decoration: none;
 }
 
 footer ul li a:hover {
     text-decoration: underline;
+}
+
+.icons a img {
+    width: 40px;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 90px;
+    height: 90px;
+    transition: transform 0.3s;
+}
+
+.icons a img:hover {
+    transform: scale(1.1);
+}
+
+a {
+    text-decoration: none;
+}
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 30px; /* Hely az ikon számára */
+    margin-top: 10px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px; /* Az ikon helyzete az input mező jobb szélén */
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+input.error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+    box-shadow: 0 0 5px #FFDAB9(255, 0, 0, 0.5);
 }
