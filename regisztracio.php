@@ -1,5 +1,73 @@
+<?php
+// Adatbázis lekérdezéshez szükséges függvények
+function adatLekeres($muvelet, $tipus = null, $sqlparameter = null)
+{
+    $db = new mysqli('localhost', 'root', '', 'mutasd');
+
+    if ($db->connect_errno != 0) return $db->connect_error;
+
+    if (!is_null($tipus) && !is_null($sqlparameter)) {
+        $stmt = $db->prepare($muvelet);
+        $stmt->bind_param($tipus, ...$sqlparameter);
+        $stmt->execute();
+        $eredmeny = $stmt->get_result();
+    } else {
+        $eredmeny = $db->query($muvelet);
+    }
+
+    if ($db->errno != 0) return $db->error;
+
+    return $eredmeny->fetch_all(MYSQLI_ASSOC);
+}
+
+function adatValtozas($muvelet, $tipus = null, $sqlparameter = null)
+{
+    $db = new mysqli('localhost', 'root', '', 'mutasd');
+
+    if ($db->connect_errno != 0) return $db->connect_error;
+
+    if (!is_null($tipus) && !is_null($sqlparameter)) {
+        $stmt = $db->prepare($muvelet);
+        $stmt->bind_param($tipus, ...$sqlparameter);
+        $stmt->execute();
+    } else {
+        $db->query($muvelet);
+    }
+
+    return $db->affected_rows > 0 ? 'Sikeres művelet!' : 'Sikertelen művelet!';
+}
+
+// Regisztrációs logika
+$hiba = "";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $felhasznalonev = $_POST['felhasznalonev'] ?? null;
+    $teljesnev = $_POST['teljesnev'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $jelszo = $_POST['jelszo'] ?? null;
+
+    // Ellenőrzés, hogy a felhasználónév vagy email már létezik-e
+    $ellenorzes_sql = "SELECT * FROM felhasznalo WHERE felhasznalonev = ? OR email = ?";
+    $lepes = adatLekeres($ellenorzes_sql, 'ss', [$felhasznalonev, $email]);
+
+    if (is_array($lepes) && count($lepes) > 0) {
+        $hiba = "A felhasználónév vagy az email cím már foglalt!";
+    } else {
+        $jelszoHash = password_hash($jelszo, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO felhasznalo (felhasznalonev, teljesnev, email, jelszo) VALUES (?, ?, ?, ?)";
+        $valasz = adatValtozas($sql, 'ssss', [$felhasznalonev, $teljesnev, $email, $jelszoHash]);
+
+        if ($valasz === 'Sikeres művelet!') {
+            $siker = "Sikeres regisztráció!";
+        } else {
+            $hiba = "Hiba történt a regisztráció során!";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +78,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/regisztracio.css">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="logo">
@@ -33,19 +102,17 @@
         <div class="registration-panel">
             <h1 class="koszones">Szia!</h1>
             <p>Regisztrálj be!</p>
-            <form>
-                <input type="text" placeholder="Felhasználónév">
-                <input type="text" placeholder="Teljes név">
-                <input type="email" placeholder="E-mail">
+            <form method="POST" action="regisztracio.php">
+                <input type="text" name="felhasznalonev" placeholder="Felhasználónév" required>
+                <input type="text" name="teljesnev" placeholder="Teljes név" required>
+                <input type="email" name="email" placeholder="E-mail" required>
                 <div class="password-container">
-                    <input type="password" placeholder="Jelszó" id="password">
+                    <input type="password" name="jelszo" placeholder="Jelszó" id="password" required>
                     <span class="jelszo-lathatosag" id="jelszo-lathatosag">
                         👁️
                     </span>
                 </div>
                 <button type="submit" class="registration-button">Regisztráció</button>
-                <p class="mar-regisztralt-felirat">Már regisztrálva vagy?</p>
-                <a href="bejelentkezes.html"><button type="button" class="login-button">Bejelentkezés</button></a>
             </form>
         </div>
         <div class="right-panel">
@@ -73,4 +140,5 @@
     </footer>
     <script src="./js/regisztracio.js"></script>
 </body>
+
 </html>

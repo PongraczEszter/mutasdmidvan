@@ -95,3 +95,20 @@ switch (mb_strtolower($url)) {
 }
 
 ?>
+
+
+
+case 'regisztracio.html':
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $bodyAdatok = json_decode(file_get_contents('php://input'), true);
+        if (isset($bodyAdatok['felhasznalonev'], $bodyAdatok['teljesnev'], $bodyAdatok['email'], $bodyAdatok['jelszo'])) {
+            $jelszoHash = password_hash($bodyAdatok['jelszo'], PASSWORD_DEFAULT);
+            $sql = "INSERT INTO felhasznalok (felhasznalonev, teljesnev, email, jelszo) VALUES (?, ?, ?, ?)";
+            $valasz = adatValtozas($sql, 'ssss', [$bodyAdatok['felhasznalonev'], $bodyAdatok['teljesnev'], $bodyAdatok['email'], $jelszoHash]);
+            echo json_encode(['valasz' => $valasz]);
+        } else {
+            echo json_encode(['hiba' => 'Hiányzó adatok!']);
+            http_response_code(400);
+        }
+    }
+    break;
