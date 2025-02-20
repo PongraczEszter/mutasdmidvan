@@ -1,144 +1,178 @@
 <?php
-// Adatbázis lekérdezéshez szükséges függvények
-function adatLekeres($muvelet, $tipus = null, $sqlparameter = null)
-{
-    $db = new mysqli('localhost', 'root', '', 'mutasd');
+session_start();
+include './sql_fuggvenyek.php';
 
-    if ($db->connect_errno != 0) return $db->connect_error;
+// Hibák gyűjtése egy tömbben
+$hibak = array();
 
-    if (!is_null($tipus) && !is_null($sqlparameter)) {
-        $stmt = $db->prepare($muvelet);
-        $stmt->bind_param($tipus, ...$sqlparameter);
-        $stmt->execute();
-        $eredmeny = $stmt->get_result();
-    } else {
-        $eredmeny = $db->query($muvelet);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Adatok lekérése a form-ból
+    $felhasznalonev = trim($_POST['felhasznalonev']);
+    $vezeteknev = trim($_POST['vezeteknev']);
+    $keresztnev = trim($_POST['keresztnev']);
+    $email = trim($_POST['email']);
+    $jelszo = $_POST['jelszo'];
+    $feltetelek = isset($_POST['feltetelek']) ? $_POST['feltetelek'] : '';
+
+    // Alapvető validációk
+    if (empty($felhasznalonev)) {
+        $hibak[] = "A felhasználónév megadása kötelező.";
+    } elseif (strlen($felhasznalonev) < 3) {
+        $hibak[] = "A felhasználónév túl rövid! Legalább 3 karakter legyen.";
     }
 
-    if ($db->errno != 0) return $db->error;
-
-    return $eredmeny->fetch_all(MYSQLI_ASSOC);
-}
-
-function adatValtozas($muvelet, $tipus = null, $sqlparameter = null)
-{
-    $db = new mysqli('localhost', 'root', '', 'mutasd');
-
-    if ($db->connect_errno != 0) return $db->connect_error;
-
-    if (!is_null($tipus) && !is_null($sqlparameter)) {
-        $stmt = $db->prepare($muvelet);
-        $stmt->bind_param($tipus, ...$sqlparameter);
-        $stmt->execute();
-    } else {
-        $db->query($muvelet);
+    if (empty($vezeteknev)) {
+        $hibak[] = "A vezetéknév megadása kötelező.";
     }
 
-    return $db->affected_rows > 0 ? 'Sikeres művelet!' : 'Sikertelen művelet!';
-}
+    if (empty($keresztnev)) {
+        $hibak[] = "A keresztnév megadása kötelező.";
+    }
 
-// Regisztrációs logika
-$hiba = "";
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $felhasznalonev = $_POST['felhasznalonev'] ?? null;
-    $teljesnev = $_POST['teljesnev'] ?? null;
-    $email = $_POST['email'] ?? null;
-    $jelszo = $_POST['jelszo'] ?? null;
+    if (empty($email)) {
+        $hibak[] = "Az email cím megadása kötelező.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $hibak[] = "Érvénytelen email cím!";
+    }
 
-    // Ellenőrzés, hogy a felhasználónév vagy email már létezik-e
-    $ellenorzes_sql = "SELECT * FROM felhasznalo WHERE felhasznalonev = ? OR email = ?";
-    $lepes = adatLekeres($ellenorzes_sql, 'ss', [$felhasznalonev, $email]);
+    if (empty($jelszo)) {
+        $hibak[] = "A jelszó megadása kötelező.";
+    }
 
-    if (is_array($lepes) && count($lepes) > 0) {
-        $hiba = "A felhasználónév vagy az email cím már foglalt!";
-    } else {
-        $jelszoHash = password_hash($jelszo, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO felhasznalo (felhasznalonev, teljesnev, email, jelszo) VALUES (?, ?, ?, ?)";
-        $valasz = adatValtozas($sql, 'ssss', [$felhasznalonev, $teljesnev, $email, $jelszoHash]);
 
-        if ($valasz === 'Sikeres művelet!') {
-            $siker = "Sikeres regisztráció!";
+    if (empty($feltetelek)) {
+        $hibak[] = "A felhasználási feltételek elfogadása kötelező.";
+    }
+
+    // Jelszó erősségének ellenőrzése
+    $jelszoMinta = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/";
+    if (!preg_match($jelszoMinta, $jelszo)) {
+        $hibak[] = "A jelszónak legalább 8 karakter hosszúnak kell lennie, tartalmaznia kell kis- és nagybetűt, valamint számot!";
+    }
+
+    // Ha nincsenek hibák, folytatjuk a feldolgozást
+    if (empty($hibak)) {
+        // Ellenőrzés, hogy létezik-e már ilyen email vagy felhasználónév
+        $stmt = $conn->prepare("SELECT id FROM felhasznalo WHERE email = ? OR felhasznalonev = ?");
+        $stmt->bind_param("ss", $email, $felhasznalonev);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $hibak[] = "Az email cím vagy a felhasználónév már foglalt!";
         } else {
-            $hiba = "Hiba történt a regisztráció során!";
+            // Jelszó hashelése
+            $hashedJelszo = password_hash($jelszo, PASSWORD_DEFAULT);
+
+            // Adatok beszúrása az adatbázisba
+            $stmt = $conn->prepare("INSERT INTO felhasznalo (felhasznalonev, email, jelszo, vezeteknev, keresztnev) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssss", $felhasznalonev, $email, $hashedJelszo, $vezeteknev, $keresztnev);
+
+            if ($stmt->execute()) {
+                // Sikeres regisztráció, átirányítás a bejelentkezési oldalra
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sikeres regisztráció!',
+                        text: 'Most már bejelentkezhetsz.',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'bejelentkezes.php';
+                        }
+                    });
+                </script>";
+                exit;
+            } else {
+                $hibak[] = "Hiba történt a regisztráció során. Kérjük, próbáld meg később!";
+            }
         }
+        $stmt->close();
     }
+
+    $conn->close();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="hu">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regisztráció</title>
     <link rel="icon" href="./kepek/logok/mutasdmidvan.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/regisztracio.css">
+    <link rel="stylesheet" href="./css/navbar-red.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <!-- SweetAlert CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <a href="./fooldal.html"><img src="./kepek/logok/mutasdmidvan.png" alt="Mutasd, mid van!"></a>
-        </div>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#">Profil megtekintése</a></li>
-            <li><a href="./veletlenszeru_receptek.html">Véletlenszerű recept</a></li>
-            <li><a href="./hozzavalok_kivalasztasa.html">Hozzávaló kiválasztása</a></li>
-            <li><a href="#">Beállítások</a></li>
-            <li><a href="bejelentkezes.html">Bejelentkezés</a></li>
-        </ul>
-    </nav>
+    <?php include './navbar.php'; ?>
 
-    <div class="container">
-        <div class="registration-panel">
-            <h1 class="koszones">Szia!</h1>
-            <p>Regisztrálj be!</p>
-            <form method="POST" action="regisztracio.php">
-                <input type="text" name="felhasznalonev" placeholder="Felhasználónév" required>
-                <input type="text" name="teljesnev" placeholder="Teljes név" required>
-                <input type="email" name="email" placeholder="E-mail" required>
-                <div class="password-container">
-                    <input type="password" name="jelszo" placeholder="Jelszó" id="password" required>
-                    <span class="jelszo-lathatosag" id="jelszo-lathatosag">
-                        👁️
-                    </span>
-                </div>
-                <button type="submit" class="registration-button">Regisztráció</button>
-            </form>
-        </div>
-        <div class="right-panel">
-            <h1 class="regisztracio-felirat">REGISZTRÁCIÓ</h1>
-            <div class="wall">
-                <div class="mutasdmidvan-logo">
-                    <img class="logo" src="./kepek/logok/mutasdmidvan.png" alt="Logó">
-                </div>
-                <p class="kovess-minket">Kövess minket máshol is!</p>
-                <div class="icons">
-                    <a href="https://www.facebook.com/" target="_blank"><img src="./kepek/logok/socmedia/facebook-drapp.png" alt="Facebook"></a>
-                    <a href="https://www.instagram.com/" target="_blank"><img src="./kepek/logok/socmedia/instagram-drapp.png" alt="Instagram"></a>
-                    <a href="https://www.tiktok.com/" target="_blank"><img src="./kepek/logok/socmedia/tiktok-drapp.png" alt="TikTok"></a>
+    <div class="wrapper">
+        <div class="container">
+            <div class="registration-panel">
+                <h1 class="koszones">Szia!</h1>
+                <p class="regisztralj-be-felirat">Regisztrálj be!</p>
+                <form method="POST" action="regisztracio.php">
+                    <input type="text" placeholder="Felhasználónév" name="felhasznalonev" value="<?= isset($felhasznalonev) ? htmlspecialchars($felhasznalonev) : '' ?>" required>
+                    <input type="text" placeholder="Vezetéknév" name="vezeteknev" value="<?= isset($vezeteknev) ? htmlspecialchars($vezeteknev) : '' ?>" required>
+                    <input type="text" placeholder="Keresztnév" name="keresztnev" value="<?= isset($keresztnev) ? htmlspecialchars($keresztnev) : '' ?>" required>
+                    <input type="email" placeholder="E-mail" name="email" value="<?= isset($email) ? htmlspecialchars($email) : '' ?>" required>
+                    <div class="password-container">
+                        <input type="password" placeholder="Jelszó" id="password" name="jelszo" required>
+                        <span class="jelszo-lathatosag" id="jelszo-lathatosag">
+                            👁️
+                        </span>
+                    </div>
+                    <div class="feltetelek">
+                        <input type="checkbox" name="feltetelek" id="feltetelek" required>
+                        <label for="feltetelek">Elfogadom a <a href="felhasznalasi-feltetelek.php">felhasználási feltételeket</a>.</label>
+                    </div>
+                    <button type="submit" class="registration-button">Regisztráció</button>
+                    <p class="mar-regisztralt-felirat">Már regisztrálva vagy?</p>
+                    <a href="bejelentkezes.php"><button type="button" class="login-button" id="login-button">Bejelentkezés</button></a>
+                </form>
+            </div>
+            <div class="right-panel">
+                <h1 class="regisztracio-felirat">REGISZTRÁCIÓ</h1>
+                <div class="wall">
+                    <div class="mutasdmidvan-logo">
+                        <img class="logo" src="./kepek/logok/mutasdmidvan.png" alt="Logó">
+                    </div>
+                    <p class="kovess-minket">Kövess minket máshol is!</p>
+                    <div class="icons">
+                        <a href="https://www.facebook.com/" target="_blank"><img src="./kepek/logok/socmedia/facebook-drapp.png" alt="Facebook"></a>
+                        <a href="https://www.instagram.com/" target="_blank"><img src="./kepek/logok/socmedia/instagram-drapp.png" alt="Instagram"></a>
+                        <a href="https://www.tiktok.com/" target="_blank"><img src="./kepek/logok/socmedia/tiktok-drapp.png" alt="TikTok"></a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer>
-        <p>&copy; 2024 Minden jog fenntartva.</p>
-        <ul>
-            <li><a href="#">Kapcsolat</a></li>
-            <li><a href="#">Adatvédelmi nyilatkozat</a></li>
-            <li><a href="#">Felhasználási feltételek</a></li>
-        </ul>
-    </footer>
-    <script src="./js/regisztracio.js"></script>
-</body>
 
+    <script src="./js/regisztracio.js"></script>
+    <script src="./js/navbar.js"></script>
+
+    <?php include './footer.php'; ?>
+
+    <?php
+    // Hibák megjelenítése SweetAlert segítségével
+    if (!empty($hibak)) {
+        $hibauzenet = implode("<br>", $hibak);
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Hiba!',
+                html: '$hibauzenet',
+                confirmButtonText: 'Ok'
+            });
+        </script>";
+    }
+    ?>
+</body>
 </html>

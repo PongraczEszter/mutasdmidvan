@@ -9,26 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/bejelentkezes.css">
+    <link rel="stylesheet" href="./css/navbar-drap.css">
+    <link rel="stylesheet" href="./css/footer.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <a href="./fooldal.html"><img src="./kepek/logok/mutasdmidvan.png" alt="Mutasd, mid van!"></a>
-        </div>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#">Profil megtekintése</a></li>
-            <li><a href="./veletlenszeru_receptek.html">Véletlenszerű recept</a></li>
-            <li><a href="./hozzavalok_kivalasztasa.html">Hozzávaló kiválasztása</a></li>
-            <li><a href="#">Beállítások</a></li>
-            <li><a href="bejelentkezes.html">Bejelentkezés</a></li>
-        </ul>
-    </nav>
-    
+    <div>
+        <?php
+            include './navbar.php';
+        ?>
+    </div>
+    <div class="wrapper">
     <div class="container">
         <div class="left-panel">
             <h1 class="bejelentkezes-felirat">BEJELENTKEZÉS</h1>
@@ -53,17 +43,16 @@
                 <button class="login-button" type="submit" id="bejelentkezes">Bejelentkezés</button>
             </form>
             <p class="meg-nem-regisztralt-felirat">Még nem vagy regisztrálva?</p>
-            <a href="regisztracio.html"><button type="button" class="registration-button">Regisztráció</button></a>
+            <a href="regisztracio.php"><button type="button" class="registration-button">Regisztráció</button></a>
         </div>
     </div>
-    <footer>
-        <p>&copy; 2024 Minden jog fenntartva.</p>
-        <ul>
-            <li><a href="#">Kapcsolat</a></li>
-            <li><a href="#">Adatvédelmi nyilatkozat</a></li>
-            <li><a href="#">Felhasználási feltételek</a></li>
-        </ul>
-    </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/bejelentkezes.js"></script>
+    
+    <?php
+        include './footer.php';
+    ?>
 </body>
 </html>
