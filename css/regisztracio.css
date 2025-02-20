@@ -10,220 +10,71 @@ body {
     overflow-x: hidden;
 }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #FF5A3D;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 5px 0px 20px #333;
-}
-
-.logo img {
-    height: 50px;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 40px;
-    margin: 0;
-    color: #FFDAB9;
-}
-
-.nav-links li a {
-    color: #FFDAB9;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.nav-links li a:hover {
-    text-decoration: underline;
-}
-
-.container {
+.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.right-panel {
-    width: 60%;
-    padding: 40px;
-    background-color: #EA5021;
-    color: #FFDAB9;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 90%;
+    max-width: 900px;
 }
 
-.registration-panel {
-    width: 25%;
+.registration-panel, .right-panel {
+    width: 100%;
+    max-width: 400px;
     padding: 40px;
     background-color: #EA5021;
     color: #FFDAB9;
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-right: 40px;
-    margin-left: 40px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .koszones {
-    padding-top: 10px;
-    font-size: 50px;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+.regisztralj-be-felirat {
+    margin-bottom: 10px;
 }
 
 .regisztracio-felirat {
-    padding-top: 10px;
-    font-size: 50px;
-}
-
-p {
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    border: none;
-    font-size: 1rem;
-}
-
-button {
-    padding: 10px;
-    background-color: #FFDAB9;
-    border: none;
-    border-radius: 10px;
-    color: #FFDAB9;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-.registration-button{
-    background-color: #FFDAB9;
-    color: #EA5021;
-    transition: all 0.1s ease;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.registration-button:hover{
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.registration-button:active {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-    transform: translateY(4px);
-}
-
-.login-button {
-    background-color: #EA5021;
-    border: 2px solid #FFDAB9;
-}
-
-.login-button-link {
-    background-color: #EA5021;
-    border: 2px solid #FFDAB9;
-}
-
-.login-button:hover {
-    color: #EA5021;
-    background-color: #FFDAB9;
-}   
-
-.login-button:active {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-    transform: translateY(4px);
-}
-
-.right-panel {
-    text-align: center;
-}
-
-.wall {
-    margin-top: 50px;
-}
-
-.wall p {
-    font-size: 2rem;
-    color: #FFDAB9;
+    font-size: 35px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .logo {
-    width: 250px;
-    height: auto; 
-    position: relative; 
+    width: 170px;
+    height: auto;
     margin-bottom: 20px;
 }
 
-.icons {
-    margin-top: 20px;
-}
-
-.icons a img {
-    width: 90px;
-    height: 90px;
-    margin: 0 10px;
-}
-
-.mar-regisztralt-felirat
-{
-    margin-top: 10px;
-    padding-top: 8px;
-}
-
 .kovess-minket {
-    padding-top: 10px;
-    font-size: 50px;
-    font-weight: no;
+    margin-top: 50px;
+    font-weight: bold;
 }
 
-footer {
-    background-color: #333;
-    color: #FFDAB9;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto;
-}
-
-footer ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-footer ul li {
-    margin: 5px 15px;
-}
-
-footer ul li a {
-    color: #FFDAB9;
-    text-decoration: none;
-}
-
-footer ul li a:hover {
-    text-decoration: underline;
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .icons a img {
-    width: 40px;
-    margin-left: 10px;
-    margin-top: 10px;
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     transition: transform 0.3s;
 }
 
@@ -231,31 +82,103 @@ footer ul li a:hover {
     transform: scale(1.1);
 }
 
-a {
-    text-decoration: none;
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #434343;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .password-container {
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
-.password-container input {
-    width: 100%;
-    padding-right: 30px; /* Hely az ikon számára */
-    margin-top: 10px;
-}
-
-.toggle-password {
+.jelszo-lathatosag {
     position: absolute;
-    right: 10px; /* Az ikon helyzete az input mező jobb szélén */
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
-    font-size: 1.2em;
 }
 
-input.error {
-    border: 2px solid red;
-    background-color: #ffe6e6;
-    box-shadow: 0 0 5px #FFDAB9(255, 0, 0, 0.5);
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.registration-button {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #EA5021;
+    background-color: #FFDAB9;
+    border: 2px solid #EA5021;
+}
+
+.registration-button:hover {
+    background-color: #EA5021;
+    color: #FFDAB9;
+}
+
+.login-button {
+    margin-top: 10px;
+    color: #FFDAB9;
+    background-color: #EA5021;
+    border: 2px solid #FFDAB9;
+
+}
+.login-button-link {
+    background-color: #FFDAB9;
+    border: 2px solid #EA5021;
+}
+
+.login-button:hover {
+    background-color: #FFDAB9;
+    color: #EA5021;
+}
+
+.login-button:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    transform: translateY(4px);
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .koszones, .regisztracio-felirat {
+        font-size: 24px;
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    .icons a img {
+        width: 50px;
+        height: 50px;
+    }
+
+    input[type="text"], input[type="password"] {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+    }
 }

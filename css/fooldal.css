@@ -10,54 +10,6 @@ body {
     overflow-x: hidden;
 }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #FF5A3D;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 5px 0px 20px #333;
-}
-
-.logo img {
-    height: 50px;
-}
-
-.menu-toggle {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
-    background-color: #FFDAB9;
-    border-radius: 5px;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 40px;
-    margin: 0;
-    color: #FFDAB9;
-}
-
-.nav-links li a {
-    color: #FFDAB9;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.nav-links li a:hover {
-    text-decoration: underline;
-}
-
 .hero-section {
     display: flex;
     align-items: center;
@@ -159,6 +111,7 @@ footer ul li a:hover {
     text-decoration: underline;
 }
 
+
 @media (max-width: 768px) {
     .hero-section {
         padding: 20px;
@@ -183,22 +136,6 @@ footer ul li a:hover {
     .recipes-button, .registration-button, .login-button {
         font-size: 14px;
     }
-
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        margin-top: 20px;
-        display: none;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: flex;
-    }
 }
 
 @media (max-width: 480px) {
@@ -213,19 +150,5 @@ footer ul li a:hover {
     .recipes-button, .registration-button, .login-button {
         padding: 12px 12px;
         font-size: 14px;
-    }
-
-    .navbar {
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    .logo img {
-        height: 40px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 8px;
     }
 }
