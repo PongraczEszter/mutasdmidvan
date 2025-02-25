@@ -17,7 +17,6 @@
         include './navbar.php';
     ?>
 
-
     <header class="hero-section">
         <div class="szoveg-container">
             <h1>Receptek - ahogy te szereted</h1>

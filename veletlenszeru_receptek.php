@@ -1,17 +1,12 @@
 <?php
-    include './sql_fuggvenyek.php';
+    include './sql_fuggvenyek_veletlen_recept.php';
 
-    // Véletlenszerű recept lekérése
-    $recept = randomRecept()[0];  // Véletlenszerű recept kiválasztása
+    $recept = randomRecept()[0];
     $etelId = $recept['id'];
 
-    // Hozzávalók lekérése
     $hozzavalok = hozzavalokLekerdezese($etelId);
-
-    // Elkészítési mód lekérése
     $elkeszites = elkeszitesLekerdezese($etelId);
 
-    // Kép elérési útja
     $kep = './kepek/etelek/' . $recept['kep'];
 ?>
 
@@ -38,12 +33,12 @@
     <main class="container">
         <section class="recipe">
             <div class="recipe-details">
-                <h2><?php echo $recept['etelnev']; ?></h2><br>
+                <h1><?php echo $recept['etelnev']; ?></h1><br>
                 <h3>Hozzávalók:</h3>
                 <ul>
                     <?php
                     foreach ($hozzavalok as $hozzavalo) {
-                        echo "<li>" . $hozzavalo['mennyiseg'] . " " . $hozzavalo['hozzavalonev'] . " (" . $hozzavalo['mertekegyseg'] . ")</li>";
+                        echo "<li>" . $hozzavalo['mennyiseg'] . "  " . $hozzavalo['mertekegyseg'] . "  " . $hozzavalo['hozzavalonev'] . "</li>";
                     }
                     ?>
                 </ul><br>
@@ -61,14 +56,16 @@
                     <label><input type="checkbox"> vegetáriánus</label>
                     <label><input type="checkbox"> vegán</label>
                 </div>
-                <button class="btn"><a class="ujrecept" href="veletlenszeru_receptek.php">Másikat kérek!</a></button>
-            </div>
-            <div class="recipe-image">
-                <img src="<?php echo $kep; ?>" alt="<?php echo $recept['etelnev']; ?>">
-            </div>
-            <div class="recipe-instructions">
+                <button class="btn"><a class="ujrecept" href="./veletlenszeru_receptek.php">Másikat kérek!</a></button>
+                
+                <br><br>
+
                 <h3>Elkészítés:</h3>
                 <p><?php echo $elkeszites[0]['elkeszitese']; ?></p>
+
+            </div>
+            <div class="recipe-image" >
+                <img src="<?php echo htmlspecialchars($kep); ?>" alt="<?php echo $recept['etelnev']; ?>">
             </div>
         </section>
     </main>

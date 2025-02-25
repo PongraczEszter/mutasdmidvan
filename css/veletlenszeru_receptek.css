@@ -30,19 +30,21 @@ body {
 .recipe-image img {
     width: 100%;
     border-radius: 50px;
+    box-shadow: 20px 20px 30px #5e5e5e;
 }
 
 .recipe-instructions {
     grid-column: 1 / -1;
+    
 }
 
 .recipe-instructions p {
     margin-top: 10px;
 }
 
-h2 {
+h1 {
     color: #EA5021;
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 h3 {
@@ -115,7 +117,11 @@ button.btn:hover {
 }
 
 @media (max-width: 480px) {
-    h1, h2, h3 {
+    h1 {
+        font-size: 1.7rem;
+    }
+    
+    h2, h3 {
         font-size: 1.2rem;
     }
 

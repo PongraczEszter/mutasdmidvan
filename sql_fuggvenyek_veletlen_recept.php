@@ -1,5 +1,5 @@
 <?php
-
+    include './sql_fuggvenyek.php';
     // Véletlenszerű recept lekérdezése
     function randomRecept()
     {
