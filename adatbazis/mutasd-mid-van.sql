@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 25. 11:01
+-- Létrehozás ideje: 2025. Feb 25. 11:05
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -77,7 +77,7 @@ CREATE TABLE `etel` (
   `tapgyakId` int(11) DEFAULT NULL,
   `erzekenyseg` int(11) DEFAULT NULL,
   `etelnev` varchar(255) DEFAULT NULL,
-  `elkeszitese` varchar(255) DEFAULT NULL,
+  `elkeszitese` varchar(700) DEFAULT NULL,
   `kep` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
@@ -88,7 +88,7 @@ CREATE TABLE `etel` (
 INSERT INTO `etel` (`id`, `felhasznaloId`, `etkezesId`, `tapgyakId`, `erzekenyseg`, `etelnev`, `elkeszitese`, `kep`) VALUES
 (1, 1, 1, 1, 1, 'Rántotta', 'Tojás felverése és megsütése', 'rantotta.jpg'),
 (2, 1, 2, 2, 2, 'Tejeskávé', 'Tej és kávé összekeverése', 'tejeskave.jpg'),
-(3, 2, 3, 3, 3, 'Palacsinta', 'Egy tálban keverd össze a lisztet, a sót és a cukrot. Add hozzá a tojásokat, a tejet és a szódavizet, majd keverd simára a tésztát. Ha a tészta túl sűrű, adj hozzá még egy kevés tejet. Egy serpenyőben hevíts olajat, majd süss vékony palacsintákat a tésztá', 'palacsinta.jpg');
+(3, 2, 3, 3, 3, 'Palacsinta', 'Egy tálban keverd össze a lisztet, a sót és a cukrot. Add hozzá a tojásokat, a tejet és a szódavizet, majd keverd simára a tésztát. Ha a tészta túl sűrű, adj hozzá még egy kevés tejet. Egy serpenyőben hevíts olajat, majd süss vékony palacsintákat a tésztát.', 'palacsinta.jpg');
 
 -- --------------------------------------------------------
 
