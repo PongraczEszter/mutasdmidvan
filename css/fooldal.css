@@ -25,7 +25,7 @@ body {
 
 .szoveg-container h1 {
     font-size: 3.5rem;
-    color: #ff5733;
+    color: #FF5733;
     margin-bottom: 20px;
 }
 
@@ -81,36 +81,6 @@ body {
     border-radius: 400px;
     box-shadow: 20px 20px 30px #5e5e5e;
 }
-
-footer {
-    background-color: #333;
-    color: #FFDAB9;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto;
-}
-
-footer ul {
-    list-style-type: none;
-}
-
-footer ul li {
-    margin: 5px 15px;
-}
-
-footer ul li a {
-    color: #FFDAB9;
-    text-decoration: none;
-}
-
-#mindenjog {
-    margin-bottom: 20px;
-}
-
-footer ul li a:hover {
-    text-decoration: underline;
-}
-
 
 @media (max-width: 768px) {
     .hero-section {

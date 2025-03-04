@@ -129,10 +129,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             👁️
                         </span>
                     </div>
-                    <div class="feltetelek">
+                    <!--div class="feltetelek">
                         <input type="checkbox" name="feltetelek" id="feltetelek" required>
                         <label for="feltetelek">Elfogadom a <a href="felhasznalasi-feltetelek.php">felhasználási feltételeket</a>.</label>
-                    </div>
+                    </div-->
                     <button type="submit" class="registration-button">Regisztráció</button>
                     <p class="mar-regisztralt-felirat">Már regisztrálva vagy?</p>
                     <a href="bejelentkezes.php"><button type="button" class="login-button" id="login-button">Bejelentkezés</button></a>
