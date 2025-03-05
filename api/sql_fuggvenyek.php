@@ -7,7 +7,7 @@
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    if ($conn->connect_error) 
+    if ($conn->connect_errno) 
     {
         die("Kapcsolódási hiba: " . $conn->connect_error);
     }

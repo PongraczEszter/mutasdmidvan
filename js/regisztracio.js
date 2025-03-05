@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
+        console.log("Submitting...");
         event.preventDefault();
 
         let mindenKitoltve = true;
@@ -54,13 +55,28 @@ document.addEventListener("DOMContentLoaded", () => {
             jelszoInput.classList.remove("error");
         }
 
-        Swal.fire({
-            title: "Siker!",
-            text: "Sikeres bejelentkezés!",
-            icon: "success",
-            confirmButtonText: "OK"
-        }).then(() => {
-            window.location.href = "fooldal.php"; 
+
+        let response = await fetch("../api/regisztracio.php/regisztracio", {
+            method: "POST",
+            body: JSON.stringify({
+                "vezeteknev": inputs[0].value,
+                "keresztnev": inputs[1].value,
+                "email": inputs[2].value,
+                "jelszo": inputs[3].value,
+            })
         });
+        let data = await response.json();
+        if(response.ok)
+        {
+            Swal.fire({
+                title: "Siker!",
+                text: data.valasz,
+                icon: "success",
+                confirmButtonText: "OK"
+            }).then(() => {
+                console.log("Redirecting...");
+                //window.location.href = "fooldal.php";
+            });
+        }
     });
 });

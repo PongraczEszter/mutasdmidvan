@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./kepek/logok/mutasdmidvan.png" type="image/x-icon">
+    <link rel="icon" href="../kepek/logok/mutasdmidvan.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/kapcsolat.css">
-    <link rel="stylesheet" href="./css/navbar-drap.css">
-    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="../css/kapcsolat.css">
+    <link rel="stylesheet" href="../css/navbar-drap.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <title>Kapcsolat</title>
 </head>
 <body>
@@ -35,14 +35,14 @@
             </form>
             
             <div class="right-container">
-                <img src="./kepek/email.png" alt="Üzenetküldési kép">
+                <img src="../kepek/email.png" alt="Üzenetküldési kép">
             </div>
         </div>
     </div>
 
     <div id="result"></div>
 
-    <script src="./js/kapcsolat.js"></script>
+    <script src="../js/kapcsolat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <?php
