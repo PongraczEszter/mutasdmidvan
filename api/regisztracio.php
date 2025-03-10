@@ -1,5 +1,5 @@
 <?php
-include '../sql_fuggvenyek.php';
+include './sql_fuggvenyek.php';
 
 // Hibák gyűjtése egy tömbben
 $hibak = array();
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && str_contains($_SERVER["REQUEST_URI"]
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $hibak[] = "Az email cím vagy a felhasználónév már foglalt!";
+            $hibak[] = "Az email cím már foglalt!";
         } else {
             // Jelszó hashelése
             $hashedJelszo = password_hash($jelszo, PASSWORD_DEFAULT);
