@@ -38,7 +38,7 @@
             <button onclick="showRecipes()">Mutasd a recepteket!</button>
         </div>
 
-        <div class="recipes" id="recipes">
+        <!-- <div class="recipes" id="recipes">
             <div class="recipe">
                 <img src="../kepek/etelek/rantott-csirkemell-krumplival.png" alt="Recept 1">
                 <h3>Rántott csirkemell</h3>
@@ -47,7 +47,7 @@
                 <img src="../kepek/etelek/csirkeporkolt.png" alt="Recept 2">
                 <h3>Csirkepörkölt</h3>
             </div>
-        </div>
+        </div> -->
 
         <div class="pagination">
             <button onclick="prevPage()">Előző</button>
