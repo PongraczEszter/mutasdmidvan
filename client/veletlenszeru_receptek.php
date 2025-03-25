@@ -38,7 +38,7 @@
                 <ul>
                     <?php
                     foreach ($hozzavalok as $hozzavalo) {
-                        echo "<li>" . $hozzavalo['mennyiseg'] . "  " . $hozzavalo['mertekegyseg'] . "  " . $hozzavalo['hozzavalonev'] . "</li>";
+                        echo "<li>" . $hozzavalo['mennyiseg'] . $hozzavalo['mertekegyseg'] . "  " . $hozzavalo['hozzavalonev'] . "</li>";
                     }
                     ?>
                 </ul><br>
@@ -56,7 +56,7 @@
                     <label><input type="checkbox"> vegetáriánus</label>
                     <label><input type="checkbox"> vegán</label>
                 </div>
-                <button class="btn"><a class="ujrecept" href="./veletlenszeru_receptek.php">Másikat kérek!</a></button>
+                <button class="btn"><a class="ujrecept" href="../client/veletlenszeru_receptek.php">Másikat kérek!</a></button>
                 
                 <br><br>
 

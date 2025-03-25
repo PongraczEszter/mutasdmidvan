@@ -74,8 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 icon: "success",
                 confirmButtonText: "OK"
             }).then(() => {
-                console.log("Redirecting...");
-                //window.location.href = "fooldal.php";
+                console.log("Redirecting...huhu");
+                setTimeout(() => {
+                    window.location.href = "../client/fooldal.php";
+                }, 1000);
             });
         }
     });
