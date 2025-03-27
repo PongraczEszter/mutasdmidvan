@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: #FF5733;
+    overflow-x: hidden;
+}
+
+h2 {
+    color: #FF5733;
+}
+
+.recept-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.hozzavalok, .elkeszites {
+    background-color: #FFDAB9;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 48%;
+}
+
+.hozzavalo-inputs input,
+#elkeszites-text {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.hozzavalo-inputs button, .elkeszites button {
+    padding: 12px 20px;
+    background-color: #FF5A3D;
+    color: #FFDAB9;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.hozzavalo-inputs button:hover, .elkeszites button:hover {
+    background-color: #FF5733;
+}
+
+.hozzavalo-inputs button:active, .elkeszites button:active {
+    transform: translateY(4px);
+    background-color: #FF5A3D;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .recept-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .hozzavalok, .elkeszites {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hozzavalo-inputs input,
+    #elkeszites-text {
+        font-size: 14px;
+    }
+
+    .hozzavalo-inputs button, .elkeszites button {
+        font-size: 14px;
+    }
+}

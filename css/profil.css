@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: #FFDAB9;
+    overflow-x: hidden;
+}
+
+.profil-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.profil-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FF5733;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+.szoveg-container {
+    max-width: 60%;
+}
+
+.szoveg-container h1 {
+    font-size: 2.5rem;
+    color: #FFDAB9;
+    margin-bottom: 15px;
+}
+
+.szoveg-container p {
+    font-size: 1.6rem;
+    padding: 50px;
+    color: black;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.profil-szerkesztese-gomb, .recept-feltoltese-gomb {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.1s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    margin: 5px;
+}
+
+.profil-szerkesztese-gomb {
+    background-color: #FFDAB9;
+    color: #FF5A3D;
+}
+
+.recept-feltoltese-gomb {
+    background-color: #FFDAB9;
+    color: #FF5A3D;
+}
+
+.profil-szerkesztese-gomb:hover, .recept-feltoltese-gomb:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.profil-szerkesztese-gomb:active, .recept-feltoltese-gomb:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(4px);
+}
+
+.kep-container {
+    max-width: 30%;
+}
+
+.kep-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .profil-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .profil-header {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .szoveg-container {
+        max-width: 100%;
+    }
+
+    .kep-container {
+        margin-bottom: 20px;
+    }
+
+    .profil-szerkesztese-gomb, .recept-feltoltese-gomb {
+        font-size: 13px;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .szoveg-container h1 {
+        font-size: 2rem;
+    }
+
+    .szoveg-container p {
+        font-size: 1.2rem;
+    }
+
+    .profil-szerkesztese-gomb, .recept-feltoltese-gomb {
+        font-size: 12px;
+    }
+}
