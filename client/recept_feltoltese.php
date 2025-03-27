@@ -16,9 +16,8 @@
     <?php include './navbar.php'; ?>
 
     <div class="recept-container">
-        <!-- Hozzávalók container -->
         <div class="hozzavalok">
-            <h2>Hozzávalók</h2><br>
+            <h2 class="cimsorok">Hozzávalók</h2><br>
             <div class="hozzavalo-inputs">
                 <input type="text" id="hozzavalo" placeholder="Hozzávaló">
                 <input type="number" id="mennyiseg" placeholder="Mennyiség">
@@ -28,9 +27,8 @@
             <ul id="hozzavalo-lista" style="margin-top: 20px;"></ul>
         </div>
 
-        <!-- Elkészítés container -->
         <div class="elkeszites">
-            <h2>Elkészítés</h2><br>
+            <h2 class="cimsorok">Elkészítés</h2><br>
             <textarea id="elkeszites-text" placeholder="Írd ide az elkészítést..."></textarea>
             <button onclick="mentesRecept()">Végleges felvitel</button>
         </div>
@@ -38,29 +36,6 @@
 
     <?php include './footer.php'; ?>
 
-    <script>
-        function hozzadHozzavalo() {
-            const hozzavalo = document.getElementById("hozzavalo").value;
-            const mennyiseg = document.getElementById("mennyiseg").value;
-            const mertekegyseg = document.getElementById("mertekegyseg").value;
-            const lista = document.getElementById("hozzavalo-lista");
-
-            if (hozzavalo && mennyiseg && mertekegyseg) {
-                const li = document.createElement("li");
-                li.textContent = `${mennyiseg} ${mertekegyseg} ${hozzavalo}`;
-                lista.appendChild(li);
-
-                // Clear input fields after adding
-                document.getElementById("hozzavalo").value = "";
-                document.getElementById("mennyiseg").value = "";
-                document.getElementById("mertekegyseg").value = "";
-            }
-        }
-
-        function mentesRecept() {
-            // Simulate saving the recipe
-            alert("Recept véglegesen felvitelre került!");
-        }
-    </script>
+    <script src="../js/recept_feltoltese.js"></script>
 </body>
 </html>

@@ -39,7 +39,12 @@
             <p>Örülünk, hogy újra látunk!</p>
             <form>
                 <input type="email" placeholder="E-mail cím" id="email" required>
-                <input type="password" placeholder="Jelszó" id="jelszo" required>
+                <div class="password-container">
+                    <input type="password" placeholder="Jelszó" id="jelszo" name="jelszo" required>
+                    <span class="jelszo-lathatosag" id="jelszo-lathatosag">
+                        👁️
+                    </span>
+                </div>
                 <button class="login-button" type="submit" id="bejelentkezes">Bejelentkezés</button>
             </form>
             <p class="meg-nem-regisztralt-felirat">Még nem vagy regisztrálva?</p>

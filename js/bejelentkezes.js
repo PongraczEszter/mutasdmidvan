@@ -3,8 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let emailInput = document.getElementById("email");
     let jelszoInput = document.getElementById("jelszo");
     let loginBtn = document.getElementById("bejelentkezes"); // Helyes ID
+    let jelszoLathatosag = document.getElementById("jelszo-lathatosag");
 
-    form.addEventListener("submit", (event) => {
+    jelszoLathatosag.addEventListener("click", () => {
+        if (jelszoInput.type === "password") {
+            jelszoInput.type = "text";
+            jelszoLathatosag.textContent = "🙄";
+        } else {
+            jelszoInput.type = "password";
+            jelszoLathatosag.textContent = "👁️";
+        }
+    });
+
+    form.addEventListener("submit", async (event) => {
         event.preventDefault(); // Ne küldje el az űrlapot
 
         let email = emailInput.value.trim();
@@ -22,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        if (email !== "admin@admin.hu" || password !== "admin") {
+        /*if (email !== "admin@admin.hu" || password !== "admin") {
             Swal.fire({
                 title: "Hiba!",
                 text: "Hibás e-mail vagy jelszó!",
@@ -32,18 +43,44 @@ document.addEventListener("DOMContentLoaded", () => {
             emailInput.classList.add("error");
             jelszoInput.classList.add("error");
             return;
-        }
+        }*/
 
-        Swal.fire({
+            let response = await fetch("../api/bejelentkezes.php/bejelentkezes", {
+                method: "POST",
+                body: JSON.stringify({
+                    "email": email,
+                    "jelszo": password,
+                }),
+                credentials: "same-origin"
+            });
+            let data = await response.json();
+            if(response.ok)
+            {
+                Swal.fire({
+                    title: "Siker!",
+                    text: data.valasz,
+                    icon: "success",
+                    confirmButtonText: "OK"
+                }).then(() => {
+                    console.log("Redirecting...huhu");
+                    setTimeout(() => {
+                        window.location.href = "../client/fooldal.php";
+                    }, 1000);
+                });
+            }
+        
+        /*Swal.fire({
             title: "Siker!",
             text: "Sikeres bejelentkezés!",
             icon: "success",
             confirmButtonText: "OK"
         }).then(() => {
-            window.location.href = "fooldal.php"; 
+            setTimeout(() => {
+                window.location.href = "../client/fooldal.php";
+            }, 1000);
         });
 
         emailInput.classList.remove("error");
-        jelszoInput.classList.remove("error");
+        jelszoInput.classList.remove("error");*/
     });
 });

@@ -26,19 +26,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && str_contains($_SERVER["REQUEST_URI"]
     // Ha nincs hiba, ellenőrizzük az adatbázisban
     if (empty($hibak)) {
 
-        $stmt = $kapcsolat->prepare("SELECT id, jelszo FROM felhasznalo WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id, vezeteknev, keresztnev, jelszo FROM felhasznalo WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
         
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $hashed_jelszo);
+            $stmt->bind_result($id,$vezeteknev,$keresztnev,  $hashedJelszo);
             $stmt->fetch();
             
-            if (password_verify($jelszo, $hashed_jelszo)) {
+            if (password_verify($jelszo, $hashedJelszo)) {
                 // Bejelentkezés sikeres, session létrehozása
                 $_SESSION['felhasznalo_id'] = $id;
                 $_SESSION['email'] = $email;
+                $_SESSION['nev'] = $vezeteknev." ".$keresztnev;
                 echo json_encode(["valasz" => "Sikeres bejelentkezés!"]);
                 exit();
             } else {
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && str_contains($_SERVER["REQUEST_URI"]
         }
         
         $stmt->close();
-        $kapcsolat->close();
+        $conn->close();
     }
 }
 

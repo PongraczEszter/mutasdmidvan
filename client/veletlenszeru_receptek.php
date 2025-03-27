@@ -37,8 +37,14 @@
                 <h3>Hozzávalók:</h3>
                 <ul>
                     <?php
-                    foreach ($hozzavalok as $hozzavalo) {
-                        echo "<li>" . $hozzavalo['mennyiseg'] . $hozzavalo['mertekegyseg'] . "  " . $hozzavalo['hozzavalonev'] . "</li>";
+                    if(is_string($hozzavalok))
+                    {
+                        echo '<i>Hozzávalók feltöltés alatt.</i>';
+                    }
+                    else {
+                        foreach ($hozzavalok as $hozzavalo) {
+                            echo "<li>" . $hozzavalo['mennyiseg'] . $hozzavalo['mertekegyseg'] . "  " . $hozzavalo['hozzavalonev'] . "</li>";
+                        }
                     }
                     ?>
                 </ul><br>

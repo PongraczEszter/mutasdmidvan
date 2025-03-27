@@ -132,6 +132,18 @@ button {
     transform: translateY(4px);
 }
 
+.password-container {
+    position: relative;
+}
+
+.jelszo-lathatosag {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 
 @media (max-width: 768px) {
     

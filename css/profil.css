@@ -10,6 +10,15 @@ body {
     overflow-x: hidden;
 }
 
+h1 {
+    color: #FFDAB9;
+}
+
+h2 {
+    color: #FFDAB9;
+    margin-bottom: 20px;
+}
+
 .profil-container {
     display: flex;
     justify-content: center;
@@ -115,6 +124,10 @@ body {
     .profil-szerkesztese-gomb, .recept-feltoltese-gomb {
         font-size: 13px;
         padding: 10px 15px;
+    }
+
+    .buttons {
+        margin-bottom: 40px;
     }
 }
 
