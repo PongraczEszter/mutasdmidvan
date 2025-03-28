@@ -62,25 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon: "success",
                     confirmButtonText: "OK"
                 }).then(() => {
-                    console.log("Redirecting...huhu");
+                    console.log("Redirecting...");
                     setTimeout(() => {
                         window.location.href = "../client/fooldal.php";
                     }, 1000);
                 });
             }
-        
-        /*Swal.fire({
-            title: "Siker!",
-            text: "Sikeres bejelentkezés!",
-            icon: "success",
-            confirmButtonText: "OK"
-        }).then(() => {
-            setTimeout(() => {
-                window.location.href = "../client/fooldal.php";
-            }, 1000);
-        });
-
-        emailInput.classList.remove("error");
-        jelszoInput.classList.remove("error");*/
     });
 });
