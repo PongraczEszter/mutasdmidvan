@@ -15,6 +15,7 @@
 <body>
     <?php include './navbar.php'; ?>
 
+    <div class="wrapper">
     <div class="profil-container">
         <div class="profil-header">
             <div class="szoveg-container">
@@ -44,5 +45,10 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <script src="../js/navbar.js"></script>
+    
+    <?php include './footer.php'; ?>
 </body>
 </html>

@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 icon: "success",
                 confirmButtonText: "OK"
             }).then(() => {
-                console.log("Redirecting...huhu");
+                console.log("Redirecting...");
                 setTimeout(() => {
                     window.location.href = "../client/fooldal.php";
                 }, 1000);

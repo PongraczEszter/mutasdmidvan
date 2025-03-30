@@ -24,7 +24,13 @@
         {
             echo "<li><a href='./profil.php'>Profil megtekintése</a></li>";
             echo "<li><a href='#' onclick='confirmLogout()'>Kijelentkezés</a></li>";
+
+            if ($_SESSION['email'] === 'admin@admin.hu' && $_SESSION['jelszo'] === 'admin') 
+            {
+                echo "<li><a href='./admin.php'>Admin felület</a></li>";
+            }
         }
+        
     ?>
 </ul>
 </nav>

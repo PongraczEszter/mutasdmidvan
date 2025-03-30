@@ -37,5 +37,6 @@
     <?php include './footer.php'; ?>
 
     <script src="../js/recept_feltoltese.js"></script>
+    <script src="../js/navbar.js"></script>
 </body>
 </html>

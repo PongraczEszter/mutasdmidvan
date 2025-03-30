@@ -2,28 +2,25 @@
 session_start();
 include './sql_fuggvenyek.php';
 
-// Hibák gyűjtése egy tömbben
+
 $hibak = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && str_contains($_SERVER["REQUEST_URI"], "/bejelentkezes")) {
-    // Adatok lekérése a form-ból
+    
     $post = json_decode(file_get_contents('php://input'), true);
     $email = trim($post['email']);
     $jelszo = $post['jelszo'];  
 
-    // Email validáció
     if (empty($email)) {
         $hibak[] = "Az email cím megadása kötelező.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $hibak[] = "Érvénytelen email cím!";
     }
 
-    // Jelszó validáció
     if (empty($jelszo)) {
         $hibak[] = "A jelszó megadása kötelező.";
     }
 
-    // Ha nincs hiba, ellenőrizzük az adatbázisban
     if (empty($hibak)) {
 
         $stmt = $conn->prepare("SELECT id, vezeteknev, keresztnev, jelszo FROM felhasznalo WHERE email = ?");
@@ -36,11 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && str_contains($_SERVER["REQUEST_URI"]
             $stmt->fetch();
             
             if (password_verify($jelszo, $hashedJelszo)) {
-                // Bejelentkezés sikeres, session létrehozása
                 $_SESSION['felhasznalo_id'] = $id;
                 $_SESSION['email'] = $email;
                 $_SESSION['nev'] = $vezeteknev." ".$keresztnev;
-                echo json_encode(["valasz" => "Sikeres bejelentkezés!"]);
+                echo json_encode(["valasz" => "Sikeres bejelentkezés!"], JSON_UNESCAPED_UNICODE);
                 exit();
             } else {
                 $hibak[] = "Hibás jelszó!";
@@ -54,10 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && str_contains($_SERVER["REQUEST_URI"]
     }
 }
 
-// Hibák visszaküldése JSON formátumban
 if (!empty($hibak)) {
-    echo json_encode(["hibak" => $hibak]);
+    http_response_code(400);
+    echo json_encode(["hibak" => $hibak], JSON_UNESCAPED_UNICODE);
 }
-?>
-
 ?>

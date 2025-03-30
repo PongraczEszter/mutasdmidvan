@@ -1,7 +1,16 @@
 <?php
     include '../api/sql_fuggvenyek_veletlen_recept.php';
 
-    $recept = randomRecept()[0];
+    if(isset($_GET["allergenek"]))
+    {
+        $allergenek = join(",",explode(" ", $_GET["allergenek"]));
+        $recept = randomReceptAllergennel($allergenek)[0];
+    }
+    else
+    {
+        $recept = randomRecept()[0];
+    }
+    
     $etelId = $recept['id'];
 
     $hozzavalok = hozzavalokLekerdezese($etelId);
@@ -49,25 +58,25 @@
                     ?>
                 </ul><br>
                 <div class="diet-options">
-                    <label><input type="checkbox"> gluténmentes</label>
-                    <label><input type="checkbox"> laktózmentes</label>
-                    <label><input type="checkbox"> rákfélék-mentes</label>
-                    <label><input type="checkbox"> tojásmentes</label>
-                    <label><input type="checkbox"> halmentes</label>
-                    <label><input type="checkbox"> diófélék-mentes</label>
-                    <label><input type="checkbox"> szójamentes</label>
-                    <label><input type="checkbox"> zellermetes</label>
-                    <label><input type="checkbox"> mustármentes</label>
-                    <label><input type="checkbox"> szezámmag mentes</label>
-                    <label><input type="checkbox"> vegetáriánus</label>
-                    <label><input type="checkbox"> vegán</label>
+                    <label><input type="checkbox" value="1"> gluténmentes</label>
+                    <label><input type="checkbox" value="2"> laktózmentes</label>
+                    <label><input type="checkbox" value="3"> rákfélék-mentes</label>
+                    <label><input type="checkbox" value="4"> tojásmentes</label>
+                    <label><input type="checkbox" value="5"> halmentes</label>
+                    <label><input type="checkbox" value="6"> diófélék-mentes</label>
+                    <label><input type="checkbox" value="7"> szójamentes</label>
+                    <label><input type="checkbox" value="8"> zellermetes</label>
+                    <label><input type="checkbox" value="9"> mustármentes</label>
+                    <label><input type="checkbox" value="10"> szezámmag mentes</label>
+                    <label><input type="checkbox" value="11"> vegetáriánus</label>
+                    <label><input type="checkbox" value="12"> vegán</label>
                 </div>
-                <button class="btn"><a class="ujrecept" href="../client/veletlenszeru_receptek.php">Másikat kérek!</a></button>
+                <button class="btn ujrecept" id="masikReceptButton">Másikat kérek!</button>
                 
                 <br><br>
 
                 <h3>Elkészítés:</h3>
-                <p><?php echo $elkeszites[0]['elkeszitese']; ?></p>
+                <p id="elkeszites-p"><?php echo $elkeszites[0]['elkeszitese']; ?></p>
 
             </div>
             <div class="recipe-image" >
@@ -78,6 +87,43 @@
 
     <?php include './footer.php'; ?>
 
+    <script>
+        function masikRecept()
+        {
+            let allergenek = Array.from(document.querySelectorAll("input[type=checkbox]")).reduce((array, item) => {
+                if(item.checked)
+                {
+                    array.push(item.value);
+                }
+                return array;
+            }, []).join("+");
+            let link = "../client/veletlenszeru_receptek.php";
+            if(allergenek != "")
+            {
+                link += "?allergenek="+allergenek;
+            }
+            setTimeout(() => {
+                    window.location.href = link;
+            }, 100);
+        }
+
+        window.addEventListener("load", () => {
+            let inputs = document.querySelectorAll("input[type=checkbox]");
+            let values = new URLSearchParams(document.location.search).get("allergenek");
+            if(values != null)
+            {
+                let gets = values.split(" ");
+                inputs.forEach((input) => {
+                    gets.forEach((value) => {
+                        input.checked = input.value == value;
+                    })
+                })
+            }
+
+            let btn = document.getElementById("masikReceptButton");
+            btn.addEventListener("click", masikRecept);
+        });
+    </script>
     <script src="../js/navbar.js"></script>
 
 </body>

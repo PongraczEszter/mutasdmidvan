@@ -1,36 +1,40 @@
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Felhasználók kezelése</title>
+    <title>Admin Felület</title>
     <link rel="icon" href="../kepek/logok/mutasdmidvan.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/navbar-red.css">
+    <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
-    <?php include './navbar.php'; ?>
-
+    <div>
+        <?php
+            include './navbar.php';
+        ?>
+    </div>
     <div class="admin-container">
-        <h2>Felhasználók kezelése</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Név</th>
-                    <th>Email</th>
-                    <th>Műveletek</th>
-                </tr>
-            </thead>
-            <tbody id="user-table">
-                
-            </tbody>
-        </table>
+        <h1>Admin Felület</h1>
+        <div class="buttons">
+            <a href="./admin-felhasznalok.php"><button class="user-management">Felhasználók kezelése</button></a>
+            <a href="./admin-receptek.php"><button class="recipe-management">Receptek kezelése</button></a>
+        </div>
+        <div class="udvozlo-szoveg">
+            <p>Üdvözlünk az admin felületen! Itt kezelheted a felhasználókat és az adatokat.</p>
+        </div>
     </div>
 
-    <?php include './footer.php'; ?>
-    <script src="../js/admin.js"></script>
+    
+    <script src="../js/navbar.js"></script>
+
+    <?php
+        include './footer.php';
+    ?>
 </body>
 </html>

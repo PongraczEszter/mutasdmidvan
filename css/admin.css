@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: #FFDAB9;
+    overflow-x: hidden;
+}
+
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: #EA5021;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.user-management {
+    background-color: #EA5021;
+    color: #FFDAB9;
+}
+
+.user-management:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.user-management:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(4px);
+}
+
+.recipe-management {
+    background-color: #EA5021;
+    color: #FFDAB9;
+}
+
+.recipe-management:hover {
+    background-color: #EA5021;
+    color: #FFDAB9;
+}   
+
+.recipe-management:active {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(4px);
+}
+
+.udvozlo-szoveg p {
+    font-size: 20px;
+    max-width: 600px;
+    line-height: 1.5;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 20px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+
+}

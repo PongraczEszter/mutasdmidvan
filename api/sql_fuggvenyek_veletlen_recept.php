@@ -1,6 +1,5 @@
 <?php
     include '../api/sql_fuggvenyek.php';
-    // Véletlenszerű recept lekérdezése
     function randomRecept()
     {
         global $conn;
@@ -8,7 +7,15 @@
         return adatokLekerese($muvelet);
     }
 
-    // Hozzávalók lekérdezése recept alapján
+    function randomReceptAllergennel($allergenek)
+    {
+        global $conn;
+        $muvelet = "SELECT * FROM `etel`
+        WHERE `etel`.`id` NOT IN
+        ( SELECT `erzekenyseg`.`etelId` FROM `erzekenyseg` WHERE `erzekenyseg`.`allergenId` IN ($allergenek)) ORDER BY RAND() LIMIT 1;";
+        return adatokLekerese($muvelet);
+    }
+
     function hozzavalokLekerdezese($etelId)
     {
         $muvelet = "SELECT nyersanyag.hozzavalonev, hozzavalo.mennyiseg, nyersanyag.mertekegyseg 
@@ -18,7 +25,18 @@
         return adatokLekerese($muvelet);
     }
 
-    // Elkészítési mód lekérdezése recept alapján
+    if($_SERVER["REQUEST_METHOD"] == "GET" && str_contains($_SERVER["REQUEST_URI"], "/hozzavalokLekerdezese"))
+    {
+        if(isset($_GET["id"]))
+        {
+            echo json_encode(hozzavalokLekerdezese($_GET["id"]), JSON_UNESCAPED_UNICODE);
+        }
+        else
+        {
+            echo json_encode(["alternativ" => "Feltöltés alatt..."], JSON_UNESCAPED_UNICODE);
+        }
+    }
+
     function elkeszitesLekerdezese($etelId)
     {
         $muvelet = "SELECT elkeszitese FROM etel WHERE id = $etelId";

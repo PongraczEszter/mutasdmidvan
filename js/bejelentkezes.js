@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     form.addEventListener("submit", async (event) => {
-        event.preventDefault(); // Ne küldje el az űrlapot
+        event.preventDefault(); 
 
         let email = emailInput.value.trim();
         let password = jelszoInput.value.trim();
@@ -33,40 +33,37 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        /*if (email !== "admin@admin.hu" || password !== "admin") {
-            Swal.fire({
-                title: "Hiba!",
-                text: "Hibás e-mail vagy jelszó!",
-                icon: "error",
-                confirmButtonText: "OK"
-            });
-            emailInput.classList.add("error");
-            jelszoInput.classList.add("error");
-            return;
-        }*/
+        let response = await fetch("../api/bejelentkezes.php/bejelentkezes", {
+            method: "POST",
+            body: JSON.stringify({
+                "email": email,
+                "jelszo": password,
+            }),
+            credentials: "same-origin"
+        });
+        let data = await response.json();
 
-            let response = await fetch("../api/bejelentkezes.php/bejelentkezes", {
-                method: "POST",
-                body: JSON.stringify({
-                    "email": email,
-                    "jelszo": password,
-                }),
-                credentials: "same-origin"
+        if (response.ok) {
+            Swal.fire({
+                title: "Sikeres bejelenkezés!",
+                text: "Kis idő múlva visszadobunk a főoldalra! Jó főzőcskézést!",
+                icon: "success",
+                confirmButtonText: "OK"
+            }).then(() => {
+                console.log("Redirecting...");
+                setTimeout(() => {
+                    window.location.href = "../client/fooldal.php";
+                }, 1000);
             });
-            let data = await response.json();
-            if(response.ok)
-            {
+        } else {
+            if (data.hibak && data.hibak.length > 0) {
                 Swal.fire({
-                    title: "Siker!",
-                    text: data.valasz,
-                    icon: "success",
+                    title: "Hibás e-mail cím vagy jelszó!",
+                    text: "Próbáld újra!",
+                    icon: "error",
                     confirmButtonText: "OK"
-                }).then(() => {
-                    console.log("Redirecting...");
-                    setTimeout(() => {
-                        window.location.href = "../client/fooldal.php";
-                    }, 1000);
                 });
             }
+        }
     });
 });

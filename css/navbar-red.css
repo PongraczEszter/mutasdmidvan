@@ -72,5 +72,6 @@
 
     .navbar.open .nav-links {
         display: flex;
+        margin-bottom: 10px;
     }
 }
