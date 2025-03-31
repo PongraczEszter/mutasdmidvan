@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Már 24. 12:54
+-- Létrehozás ideje: 2025. Már 31. 13:05
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `mutasd`
 --
+CREATE DATABASE IF NOT EXISTS `mutasd` DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+USE `mutasd`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Tábla szerkezet ehhez a táblához `allergen`
 --
 
+DROP TABLE IF EXISTS `allergen`;
 CREATE TABLE `allergen` (
   `id` int(11) NOT NULL,
   `nev` varchar(255) DEFAULT NULL
@@ -56,6 +59,7 @@ INSERT INTO `allergen` (`id`, `nev`) VALUES
 -- Tábla szerkezet ehhez a táblához `erzekenyseg`
 --
 
+DROP TABLE IF EXISTS `erzekenyseg`;
 CREATE TABLE `erzekenyseg` (
   `id` int(11) NOT NULL,
   `etelId` int(11) DEFAULT NULL,
@@ -78,6 +82,7 @@ INSERT INTO `erzekenyseg` (`id`, `etelId`, `allergenId`) VALUES
 -- Tábla szerkezet ehhez a táblához `etel`
 --
 
+DROP TABLE IF EXISTS `etel`;
 CREATE TABLE `etel` (
   `id` int(11) NOT NULL,
   `felhasznaloId` int(11) DEFAULT NULL,
@@ -101,7 +106,7 @@ INSERT INTO `etel` (`id`, `felhasznaloId`, `etkezesId`, `tapgyakId`, `erzekenyse
 (5, 1, 2, 3, 5, 'Brokkolis sajtgolyó', 'A brokkolis sajtgolyó elkészítéséhez először a brokkolirózsákat kisebb darabokra vágjuk és egy aprítógépben morzsalékosra daráljuk. Ezt egy nagy keverőtálba rakjuk, hozzáadjuk a kétféle reszelt sajtot, a tojást és a fűszereket. Masszát gyúrunk belőle és 35 g-os golyókat formázunk.\r\n\r\nElőkészítünk egy panírpályát és megforgatjuk őket először a lisztben, majd a felvert tojásban, a zsemlemorzsában és újra a tojásban, majd megint a zsemlemorzsában. \r\n\r\nAz olajat egy lábasban 170-180 fokosra melegítjük, majd szép aranybarnára sütjük benne a fasírtokat, egyszerre 3-4 darabot. ', 'sajtgolyo.jpg'),
 (6, 2, 3, 2, 6, 'Klasszikus francia omlett', 'A tojásokat egy mélyebb tálba ütjük. Villával jól felverjük úgy, hogy habos legyen - teljesen össze kell törni, nem szabad, hogy a fehérje egyben maradjon, mert kicsapódik sütéskor.\r\nA snidlinget apróra vágjuk, hozzáadjuk a tojáshoz, sózzuk, borsozzuk.\r\nA serpenyőt előmelegítjük. Ha már jó forró, akkor adjuk hozzá a vajat. Ha felolvadt és kicsit habos, de még nem barna, akkor beleöntjük a tojást.\r\nVárunk egy percet, míg kicsit megszilárdul, majd óvatosan huzigatni kezdjük, hogy mindenhol átsüljön, de krémes maradjon.\r\nA serpenyőt kicsit megbillentjük az egyik irányba, hogy a folyékony massza nagy része oda folyjon. Így tartjuk, majd ha már eléggé megszilárdult, a vékonyabb oldalt ráhajtjuk, ', 'omlett.jpg'),
 (7, 1, 2, 1, 7, 'Töltött cukkini air fryerben', 'A cukkiniket hosszában félbevágjuk, majd egy kanál segítségével kikanalazzuk a magos részét és megsózzuk. A darált húsban elkeverjük a finomra vágott vöröshagymát és a reszelt fokhagymát, az aprított petrezselymet, a daráltpaprika-krémet, sózzuk, borsozzuk, hozzáadjuk a tojást, a fűszerpaprikát és a köményt, majd az egészet összekeverjük, és a tölteléket a cukkinik közepébe kanalazzuk. Vékonyan lekenjük a tetejét az olajjal, és betesszük 18 percre a 180 fokos air fryerbe.', 'toltott.jpg'),
-(8, 1, 4, 1, 8, 'Churros', 'Egy lábasba öntsük bele a vizet, barna cukrot, sót és a vajat. Tegyük a tűzre.\r\nAmikor felforr, keverjük hozzá a lisztet, és addig kavarjuk, amíg egy nagy gömböcöt nem kapunk. Vegyük le a tűzről, és hagyjuk kihűlni a tésztát.\r\nAdjuk hozzá a tojásokat és a vanília kivonatot, majd robotgép segítségével keverjük simára.\r\nForrósítsunk olajat (nem kell bő olaj, de forró legyen), és készítsük elő a fahéjas cukrot, hogy lecsöpögtetés után rögtön meg tudjuk hempergetni benne a fánkokat.\r\nTegyünk egy csillag formájú véget a habzsákra (célszerű eldobható habzsákot használni, nekem az anyag nem vált be, kifolyt mellette a tészta).\r\nTöltsük bele a masszát, és szépen nyomkodjuk bele a forró olajba a kb. ', 'churros.jpg'),
+(8, 1, 4, 1, 8, 'Churros', 'A vizet, a vajat, a cukrot és a sót tegyük egy kis lábasba. Közepes lángon forraljuk fel.\r\n\r\nAdjuk hozzá a lisztet, közben folyamatosan kevergessük. 1-2 perc után, ha a homogén massza már elválik az edény falától, húzzuk le a tűzről.\r\n\r\nPárszor forgassuk át, hogy hűljön a tészta, ha már nem tűzforró, akkor egyesével keverjük bele a tojásokat. A homogén tésztát töltsük át egy csillagcsővel ellátott habzsákba.\r\n\r\nKészítsünk elő egy serpenyőt, öntsünk bele bő olajat, majd melegítsük fel 170 fokosra. Körülbelül 10 cm hosszú rudakat nyomjunk a forró olajba. 2-3 perc alatt aranybarnára sülnek.\r\n\r\nTegyük őket papírtörlővel bélelt tányérra, hogy a papír felszívja a felesleges olajat. Még melegen for', 'churros.jpg'),
 (9, 1, 1, 1, 9, 'Gluténmentes kakaós csiga', 'A gluténmentes kakaós csigához langyos tejet összekeverjük a mézzel és belemorzsoljuk az élesztőt.\r\nEgy keverőtálba kimérjük a lisztkeveréket, hozzáadjuk a cukrot, a tojássárgáját, az olvasztott margarint és a felfuttatott élesztőt, majd egynemű tésztát gyúrunk.\r\nA tésztát lefedjük folpackkal és szobahőmérsékleten 45 percet pihentetjük.\r\nRizsliszttel megszórt felületen óvatosan átgyúrjuk a tésztát és kb. 2 mm vastag téglalapot nyújtunk belőle. A tészta tetejére egyenletesen hideg margarint reszelünk, majd hajtogatjuk: balról, jobbról, lentről és fentről.\r\nA tésztát megfordítjuk, és kb. 2 mm vastag téglalappá gyúrjuk.\r\nA kinyújtott tésztát megkenjünk olvasztott margarinnal, megszórjuk a kakaó', 'csiga.jpg'),
 (10, 1, 2, 2, 10, 'Vegán spenótfőzelék', 'A kókuszolajat felforrósítjuk, majd üvegesre pároljuk rajta az aprított hagymát és fokhagymát. Ízesítjük garam masalával, sóval-borssal.\r\nAmikor már üveges és kicsit pirult a hagyma, hozzáadjuk a spenótot. Használhatunk frisset, fagyasztottat, vágottat vagy püréset is, de ha fagyasztottat használunk, előtte olvasszuk ki. Pároljuk a spenótot kb. 5 percig, közben folyamatosan kevergetve, nehogy leégjen.\r\nEkkor jöhet bele a köretnek sütött burgonyából kb. 150 gramm, valamint a kókusztej. Sűrítéshez persze használhatunk sima főtt burgonyát vagy keményítőt is, de ez a megoldás okosan kombinálja a köretet a sűrítéssel.\r\nTurmixoljuk az egészet teljesen krémesre, ha szükséges, adjunk hozzá kevés viz', 'spenot.jpg'),
 (11, 1, 1, 3, 11, 'Zabkása', 'Személyenként 3-4 ek zabpelyhet önts fel annyi vízzel, hogy bőven ellepje. Főzd 5 percig, majd lefedve hagyd állni 10 percig.', 'zabkasa.jpg'),
@@ -133,6 +138,7 @@ INSERT INTO `etel` (`id`, `felhasznaloId`, `etkezesId`, `tapgyakId`, `erzekenyse
 -- Tábla szerkezet ehhez a táblához `etkezestipus`
 --
 
+DROP TABLE IF EXISTS `etkezestipus`;
 CREATE TABLE `etkezestipus` (
   `id` int(11) NOT NULL,
   `tipus` varchar(255) DEFAULT NULL
@@ -154,6 +160,7 @@ INSERT INTO `etkezestipus` (`id`, `tipus`) VALUES
 -- Tábla szerkezet ehhez a táblához `felhasznalo`
 --
 
+DROP TABLE IF EXISTS `felhasznalo`;
 CREATE TABLE `felhasznalo` (
   `id` int(11) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -172,7 +179,8 @@ INSERT INTO `felhasznalo` (`id`, `email`, `jelszo`, `vezeteknev`, `keresztnev`, 
 (1, 'teszt@example.com', 'teszt123', 'Teszt', 'Felhasználó', '2000-01-01 00:00:00', '0612345678'),
 (2, 'anna@example.com', 'jelszo123', 'Kovács', 'Anna', '1998-05-15 00:00:00', '0670123456'),
 (3, 'kovacstibor@pelda.hu', '$2y$10$xEzE08NdC84ChZbES7NS5.4ZZJ8uBJ.v4AhOKwaEAH409hZou/XPq', 'Kovács', 'Tibor', NULL, NULL),
-(5, 'eszter@proba.com', '$2y$10$2Q9NGuV.PYyW3Jmbqyu9z.ICfW8ofIKwkNIc99DRJt8SHcAA9psku', 'Próba', 'Eszter', NULL, NULL);
+(5, 'eszter@proba.com', '$2y$10$2Q9NGuV.PYyW3Jmbqyu9z.ICfW8ofIKwkNIc99DRJt8SHcAA9psku', 'Próba', 'Eszter', NULL, NULL),
+(6, 'terikekonyhaja@email.com', '$2y$10$7xHZ.5aIKIrUnPBmY1W8e.vr1z3KnCQkqfa0GZBucokNvQhpt1pOW', 'Teri', 'Néni', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,6 +188,7 @@ INSERT INTO `felhasznalo` (`id`, `email`, `jelszo`, `vezeteknev`, `keresztnev`, 
 -- Tábla szerkezet ehhez a táblához `hozzavalo`
 --
 
+DROP TABLE IF EXISTS `hozzavalo`;
 CREATE TABLE `hozzavalo` (
   `id` int(11) NOT NULL,
   `etelId` int(11) DEFAULT NULL,
@@ -207,7 +216,7 @@ INSERT INTO `hozzavalo` (`id`, `etelId`, `nyersanyagId`, `mennyiseg`) VALUES
 (15, 2, 10, 5),
 (16, 4, 12, 40),
 (17, 4, 14, 1200),
-(18, 4, 13, 1),
+(18, 4, 13, 100),
 (19, 4, 17, 250),
 (20, 4, 18, 20),
 (21, 4, 20, 2),
@@ -224,7 +233,29 @@ INSERT INTO `hozzavalo` (`id`, `etelId`, `nyersanyagId`, `mennyiseg`) VALUES
 (32, 5, 11, 200),
 (33, 5, 1, 5),
 (34, 5, 3, 100),
-(35, 5, 23, 150);
+(35, 5, 23, 150),
+(36, 7, 25, 2),
+(37, 7, 26, 500),
+(38, 7, 27, 2),
+(39, 7, 28, 12),
+(40, 7, 1, 1),
+(41, 7, 29, 2),
+(42, 7, 9, 2),
+(43, 7, 30, 100),
+(44, 7, 31, 1),
+(45, 7, 19, 2),
+(46, 7, 32, 15),
+(47, 7, 11, 8),
+(48, 8, 3, 110),
+(49, 8, 12, 50),
+(50, 8, 13, 12),
+(51, 8, 10, 30),
+(52, 8, 9, 2),
+(53, 8, 1, 2),
+(54, 8, 11, 150),
+(55, 8, 33, 10),
+(56, 9, 34, 250),
+(57, 9, 10, 50);
 
 -- --------------------------------------------------------
 
@@ -232,6 +263,7 @@ INSERT INTO `hozzavalo` (`id`, `etelId`, `nyersanyagId`, `mennyiseg`) VALUES
 -- Tábla szerkezet ehhez a táblához `nyersanyag`
 --
 
+DROP TABLE IF EXISTS `nyersanyag`;
 CREATE TABLE `nyersanyag` (
   `id` int(11) NOT NULL,
   `hozzavalonev` varchar(255) DEFAULT NULL,
@@ -243,7 +275,7 @@ CREATE TABLE `nyersanyag` (
 --
 
 INSERT INTO `nyersanyag` (`id`, `hozzavalonev`, `mertekegyseg`) VALUES
-(1, 'tojás', 'darab'),
+(1, 'tojás', 'db'),
 (2, 'tej', 'ml'),
 (3, 'liszt', 'g'),
 (4, 'mogyorókrém', 'g'),
@@ -252,7 +284,7 @@ INSERT INTO `nyersanyag` (`id`, `hozzavalonev`, `mertekegyseg`) VALUES
 (10, 'cukor', 'g'),
 (11, 'olaj', 'ml'),
 (12, 'vaj', 'g'),
-(13, 'víz', 'l'),
+(13, 'víz', 'cl'),
 (14, 'alma', 'g'),
 (15, 'dió', 'g'),
 (16, 'kávé', 'ml'),
@@ -263,7 +295,22 @@ INSERT INTO `nyersanyag` (`id`, `hozzavalonev`, `mertekegyseg`) VALUES
 (21, 'snigling', 'g'),
 (22, 'brokkoli', 'g'),
 (23, 'zsemlemorzsa', 'g'),
-(24, 'sajt', 'g');
+(24, 'sajt', 'g'),
+(25, 'cukkini', 'db'),
+(26, 'darált sertéshús', 'g'),
+(27, 'fokhagyma', 'gerezd'),
+(28, 'paprika-krém', 'g'),
+(29, 'őrölt kömény', 'mk'),
+(30, 'vöröshagyma', 'g'),
+(31, 'petrzselyem', 'csokor'),
+(32, 'fűszerpaprika', 'g'),
+(33, 'fahéj', 'g'),
+(34, 'schar mix B', 'g'),
+(35, 'porélesztő', 'g'),
+(36, 'rizsliszt', 'g'),
+(37, 'kakaópor', 'g'),
+(38, 'porcukor', 'g'),
+(39, 'vaníliás cukor', 'g');
 
 -- --------------------------------------------------------
 
@@ -271,6 +318,7 @@ INSERT INTO `nyersanyag` (`id`, `hozzavalonev`, `mertekegyseg`) VALUES
 -- Tábla szerkezet ehhez a táblához `tapgyak`
 --
 
+DROP TABLE IF EXISTS `tapgyak`;
 CREATE TABLE `tapgyak` (
   `id` int(11) NOT NULL,
   `nev` varchar(255) DEFAULT NULL
@@ -345,19 +393,19 @@ ALTER TABLE `tapgyak`
 -- AUTO_INCREMENT a táblához `felhasznalo`
 --
 ALTER TABLE `felhasznalo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `hozzavalo`
 --
 ALTER TABLE `hozzavalo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT a táblához `nyersanyag`
 --
 ALTER TABLE `nyersanyag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
