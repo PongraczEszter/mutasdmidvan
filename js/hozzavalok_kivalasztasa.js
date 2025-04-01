@@ -19,60 +19,80 @@ function closeModal() {
     document.getElementById('modal').style.display = 'none';
 }
 
-async function getRecipes()
-{ 
+async function getRecipes() {
     let link = "../api/hozzavalok_kivalasztasa.php/hozzavalok_kivalasztasa";
     let input = document.getElementById("ingredient-input");
-
-    let allergenek = Array.from(document.querySelectorAll("input[type=checkbox]")).reduce((array, item) => {
-        if(item.checked)
-        {
-            array.push(item.value);
-        }
-        return array;
-    }, []).join("+");
+    let output = document.getElementById("keresesEredmenye");
     
-    if (allergenek != "")
-    {
+    if (input.value.trim() === "") {
+        Swal.fire({
+            icon: "warning",
+            title: "Hoppá!",
+            text: "Kérlek, adj meg legalább egy hozzávalót!",
+        });
+        return;
+    }
+
+    let allergenek = Array.from(document.querySelectorAll("input[type=checkbox]:checked"))
+        .map(item => item.value)
+        .join("+");
+    
+    if (allergenek !== "") {
         link += "?allergenek=" + allergenek;
     }
     
-    let response = await fetch(link, {
-        method: "POST",
-        body: JSON.stringify({
-            hozzavalok: input.value
-        })
-    });
-    let data = await response.json();
-
-    let output = document.getElementById("keresesEredmenye");
-    output.innerHTML = "";
-    data.forEach(element => {
-        let div = document.createElement("div");
-        div.setAttribute("class", "card");
-        
-        let img = document.createElement("img");
-        img.setAttribute("src", `../kepek/etelek/${element.kep}`);    
-        img.setAttribute("alt", "Kép");
-        img.setAttribute("class", "card-img");
-
-        let h3 = document.createElement("h3");
-        h3.setAttribute("class", "card-title");
-        h3.innerText = element.etelnev;
-
-        let btn = document.createElement("button");
-        btn.setAttribute("class", "card-btn");
-        btn.addEventListener("click", () => {
-            openModal(element.id, element.elkeszitese);
+    try {
+        let response = await fetch(link, {
+            method: "POST",
+            body: JSON.stringify({ hozzavalok: input.value })
         });
-        btn.innerText = "Hozzávalók, elkészítés";
+        
+        let data = await response.json();
+        output.innerHTML = "";
+        
+        if (data.length === 0) {
+            Swal.fire({
+                icon: "info",
+                title: "Nincs találat",
+                text: "Sajnálom, nem találtunk receptet ezekkel a hozzávalókkal.",
+            });
+            return;
+        }
+        
+        data.forEach(element => {
+            let div = document.createElement("div");
+            div.setAttribute("class", "card");
 
-        div.appendChild(img);
-        div.appendChild(h3);
-        div.appendChild(btn);
-        output.appendChild(div);
-    });
+            let img = document.createElement("img");
+            img.setAttribute("src", `../kepek/etelek/${element.kep}`);    
+            img.setAttribute("alt", "Kép");
+            img.setAttribute("class", "card-img");
+
+            let h3 = document.createElement("h3");
+            h3.setAttribute("class", "card-title");
+            h3.innerText = element.etelnev;
+
+            let btn = document.createElement("button");
+            btn.setAttribute("class", "card-btn");
+            btn.addEventListener("click", () => {
+                openModal(element.id, element.elkeszitese);
+            });
+            btn.innerText = "Hozzávalók, elkészítés";
+
+            div.appendChild(img);
+            div.appendChild(h3);
+            div.appendChild(btn);
+            output.appendChild(div);
+        });
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: "Hiba történt",
+            text: "Nem sikerült lekérdezni a recepteket. Próbáld újra később!",
+        });
+    }
 }
+
 
 async function getHozzavalok(id)
 {
