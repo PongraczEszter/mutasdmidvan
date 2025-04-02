@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Már 31. 13:05
+-- Létrehozás ideje: 2025. Ápr 02. 12:13
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -74,7 +74,23 @@ INSERT INTO `erzekenyseg` (`id`, `etelId`, `allergenId`) VALUES
 (1, 1, 4),
 (2, 2, 2),
 (3, 3, 1),
-(4, 3, 3);
+(4, 3, 3),
+(5, 8, 1),
+(6, 13, 1),
+(7, 1, 12),
+(8, 1, 12),
+(9, 3, 12),
+(10, 5, 12),
+(11, 6, 12),
+(12, 7, 12),
+(13, 7, 11),
+(14, 17, 12),
+(15, 20, 12),
+(16, 20, 11),
+(17, 22, 11),
+(18, 22, 12),
+(19, 24, 11),
+(20, 24, 12);
 
 -- --------------------------------------------------------
 
@@ -166,21 +182,19 @@ CREATE TABLE `felhasznalo` (
   `email` varchar(255) DEFAULT NULL,
   `jelszo` varchar(255) DEFAULT NULL,
   `vezeteknev` varchar(255) DEFAULT NULL,
-  `keresztnev` varchar(255) DEFAULT NULL,
-  `szuletesiido` datetime DEFAULT NULL,
-  `telefonszam` varchar(255) DEFAULT NULL
+  `keresztnev` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `felhasznalo`
 --
 
-INSERT INTO `felhasznalo` (`id`, `email`, `jelszo`, `vezeteknev`, `keresztnev`, `szuletesiido`, `telefonszam`) VALUES
-(1, 'teszt@example.com', 'teszt123', 'Teszt', 'Felhasználó', '2000-01-01 00:00:00', '0612345678'),
-(2, 'anna@example.com', 'jelszo123', 'Kovács', 'Anna', '1998-05-15 00:00:00', '0670123456'),
-(3, 'kovacstibor@pelda.hu', '$2y$10$xEzE08NdC84ChZbES7NS5.4ZZJ8uBJ.v4AhOKwaEAH409hZou/XPq', 'Kovács', 'Tibor', NULL, NULL),
-(5, 'eszter@proba.com', '$2y$10$2Q9NGuV.PYyW3Jmbqyu9z.ICfW8ofIKwkNIc99DRJt8SHcAA9psku', 'Próba', 'Eszter', NULL, NULL),
-(6, 'terikekonyhaja@email.com', '$2y$10$7xHZ.5aIKIrUnPBmY1W8e.vr1z3KnCQkqfa0GZBucokNvQhpt1pOW', 'Teri', 'Néni', NULL, NULL);
+INSERT INTO `felhasznalo` (`id`, `email`, `jelszo`, `vezeteknev`, `keresztnev`) VALUES
+(1, 'teszt@example.com', 'teszt123', 'Teszt', 'Felhasználó'),
+(2, 'anna@example.com', 'jelszo123', 'Kovács', 'Anna'),
+(3, 'kovacstibor@pelda.hu', '$2y$10$xEzE08NdC84ChZbES7NS5.4ZZJ8uBJ.v4AhOKwaEAH409hZou/XPq', 'Kovács', 'Tibor'),
+(5, 'eszter@proba.com', '$2y$10$2Q9NGuV.PYyW3Jmbqyu9z.ICfW8ofIKwkNIc99DRJt8SHcAA9psku', 'Próba', 'Eszter'),
+(6, 'terikekonyhaja@email.com', '$2y$10$7xHZ.5aIKIrUnPBmY1W8e.vr1z3KnCQkqfa0GZBucokNvQhpt1pOW', 'Teri', 'Néni');
 
 -- --------------------------------------------------------
 
@@ -255,7 +269,15 @@ INSERT INTO `hozzavalo` (`id`, `etelId`, `nyersanyagId`, `mennyiseg`) VALUES
 (54, 8, 11, 150),
 (55, 8, 33, 10),
 (56, 9, 34, 250),
-(57, 9, 10, 50);
+(57, 9, 10, 50),
+(58, 9, 35, 9),
+(59, 9, 2, 8),
+(60, 9, 13, 8),
+(61, 9, 12, 75),
+(62, 9, 1, 2),
+(63, 9, 37, 25),
+(64, 9, 38, 40),
+(65, 9, 39, 5);
 
 -- --------------------------------------------------------
 
@@ -399,7 +421,7 @@ ALTER TABLE `felhasznalo`
 -- AUTO_INCREMENT a táblához `hozzavalo`
 --
 ALTER TABLE `hozzavalo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT a táblához `nyersanyag`
