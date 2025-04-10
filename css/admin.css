@@ -55,21 +55,6 @@ button {
     transform: translateY(4px);
 }
 
-.recipe-management {
-    background-color: #EA5021;
-    color: #FFDAB9;
-}
-
-.recipe-management:hover {
-    background-color: #EA5021;
-    color: #FFDAB9;
-}   
-
-.recipe-management:active {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transform: translateY(4px);
-}
-
 .udvozlo-szoveg p {
     font-size: 20px;
     max-width: 600px;

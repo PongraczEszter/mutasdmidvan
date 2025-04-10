@@ -18,6 +18,12 @@
     <div>
         <?php
             include './navbar.php';
+
+            if(!isset($_SESSION['admin']) || !$_SESSION['admin'])
+            {
+                http_response_code(403);
+                die("Forbidden");
+            }
         ?>
     </div>
     <div class="admin-container">
@@ -34,6 +40,7 @@
                         <th>Keresztnév</th>
                         <th>Születési idő</th>
                         <th>Telefonszám</th>
+                        <th>Admin</th>
                         <th>Módosítás</th>
                         <th>Törlés</th>
                     </tr>
@@ -63,10 +70,13 @@
                 <input type="text" id="edit-last-name" required><br><br>
 
                 <label for="edit-birthdate">Születési idő:</label>
-                <input type="date" id="edit-birthdate" required><br><br>
+                <input type="date" id="edit-birthdate"><br><br>
 
                 <label for="edit-phone">Telefonszám:</label>
-                <input type="text" id="edit-phone" required><br><br>
+                <input type="text" id="edit-phone"><br><br>
+
+                <label for="edit-phone">Admin:</label>
+                <input type="checkbox" id="edit-admin"><br><br>
 
                 <button type="submit">Módosítás mentése</button>
             </form>

@@ -36,8 +36,7 @@
                     ?>
                 </h2>
                 <div class="buttons">
-                    <a href="#"><button class="profil-szerkesztese-gomb">Profil szerkesztése</button></a> 
-                    <a href="./recept_feltoltese.php"><button class="recept-feltoltese-gomb">Recept feltöltése</button></a> 
+                    <a href="./profil-szerkesztes.php"><button class="profil-szerkesztese-gomb">Profil szerkesztése</button></a> 
                 </div>
             </div>
             <div class="kep-container">

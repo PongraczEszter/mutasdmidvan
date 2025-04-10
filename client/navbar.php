@@ -23,12 +23,15 @@
         else 
         {
             echo "<li><a href='./profil.php'>Profil megtekintése</a></li>";
-            echo "<li><a href='#' onclick='confirmLogout()'>Kijelentkezés</a></li>";
+            echo "<li><a href='./recept_feltoltese.php'>Recept feltöltése</a></li>";
+            
 
-            if ($_SESSION['email'] === 'admin@admin.hu' && $_SESSION['jelszo'] === 'admin') 
+            if ($_SESSION['admin']) 
             {
                 echo "<li><a href='./admin.php'>Admin felület</a></li>";
             }
+
+            echo "<li><a href='#' onclick='confirmLogout()'>Kijelentkezés</a></li>";
         }
         
     ?>

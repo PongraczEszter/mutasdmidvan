@@ -1,3 +1,4 @@
+let hozzavalok = [];
 function hozzadHozzavalo() 
 {
     const hozzavalo = document.getElementById("hozzavalo").value;
@@ -10,6 +11,11 @@ function hozzadHozzavalo()
         const li = document.createElement("li");
         li.textContent = `${mennyiseg} ${mertekegyseg} ${hozzavalo}`;
         lista.appendChild(li);
+        hozzavalok.push({
+            mennyiseg,
+            mertekegyseg,
+            hozzavalo
+        })
 
         document.getElementById("hozzavalo").value = "";
         document.getElementById("mennyiseg").value = "";
@@ -17,35 +23,44 @@ function hozzadHozzavalo()
     }
 }
 
-function mentesRecept() 
-{
+function mentesRecept() {
     const elkeszites = document.getElementById("elkeszites-text").value;
     const hozzavaloLista = document.querySelectorAll("#hozzavalo-lista li");
     
-    if (!elkeszites || hozzavaloLista.length === 0)
-    {
+    if (!elkeszites || hozzavaloLista.length === 0) {
         alert("Töltsd ki az összes mezőt!");
         return;
     }
 
-    let hozzavalok = [];
-    hozzavaloLista.forEach(li => {
-        hozzavalok.push(li.textContent);
-    });
+    let allergenek = Array.from(document.querySelectorAll("input[type=checkbox]")).reduce((array, item) => {
+        if(item.checked)
+        {
+            array.push(item.value);
+        }
+        return array;
+    }, []);
 
-    let formData = new FormData();
-    formData.append("elkeszites", elkeszites);
-    formData.append("hozzavalok", JSON.stringify(hozzavalok));
+    let formData = {
+        nev: document.getElementById('nev').value,
+        elkeszites,
+        hozzavalok,
+        allergenek
+    }
 
-    fetch("mentes_recept.php", {
+    console.log(formData);
+    fetch("../api/receptek_feltoltese.php/feltoltes", {
         method: "POST",
-        body: formData
+        body: JSON.stringify(formData)
     })
     .then(response => response.text())
     .then(data => {
         alert(data); 
         document.getElementById("elkeszites-text").value = "";
         document.getElementById("hozzavalo-lista").innerHTML = "";
+        hozzavalok = [];
+        setTimeout(() => {
+            window.location.href = "../client/fooldal.php";
+        }, 1000);
     })
     .catch(error => console.error("Hiba történt:", error));
 }

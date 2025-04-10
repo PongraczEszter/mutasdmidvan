@@ -16,6 +16,14 @@
     <?php include './navbar.php'; ?>
 
     <div class="recept-container">
+    
+        <div class="nev">
+            <h2 class="cimsorok">Recept neve</h2>
+            <div class="nev-input">
+                <input type="text" id="nev" placeholder="Recept neve">
+            </div>
+        </div>
+
         <div class="hozzavalok">
             <h2 class="cimsorok">Hozzávalók</h2><br>
             <div class="hozzavalo-inputs">
@@ -25,6 +33,24 @@
                 <button onclick="hozzadHozzavalo()">Hozzáadás</button><br>
             </div>
             <ul id="hozzavalo-lista" style="margin-top: 20px;"></ul>
+        </div>
+
+        <div class="erzekenyseg">
+            <h2 class="cimsorok">Érzékenységek</h2>
+            <div class="erzekenyseg-checkbox">
+            <label><input type="checkbox" value="1"> gluténmentes</label>
+                <label><input type="checkbox" value="2"> laktózmentes</label>
+                <label><input type="checkbox" value="3"> rákfélék-mentes</label>
+                <label><input type="checkbox" value="4"> tojásmentes</label>
+                <label><input type="checkbox" value="5"> halmentes</label>
+                <label><input type="checkbox" value="6"> diófélék-mentes</label>
+                <label><input type="checkbox" value="7"> szójamentes</label>
+                <label><input type="checkbox" value="8"> zellermentes</label>
+                <label><input type="checkbox" value="9"> mustármentes</label>
+                <label><input type="checkbox" value="10"> szezámmag mentes</label>
+                <label><input type="checkbox" value="11"> vegetáriánus</label>
+                <label><input type="checkbox" value="12"> vegán</label>
+            </div>
         </div>
 
         <div class="elkeszites">

@@ -65,7 +65,7 @@
                     <label><input type="checkbox" value="5"> halmentes</label>
                     <label><input type="checkbox" value="6"> diófélék-mentes</label>
                     <label><input type="checkbox" value="7"> szójamentes</label>
-                    <label><input type="checkbox" value="8"> zellermetes</label>
+                    <label><input type="checkbox" value="8"> zellermentes</label>
                     <label><input type="checkbox" value="9"> mustármentes</label>
                     <label><input type="checkbox" value="10"> szezámmag mentes</label>
                     <label><input type="checkbox" value="11"> vegetáriánus</label>

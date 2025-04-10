@@ -17,13 +17,18 @@
     <div>
         <?php
             include './navbar.php';
+
+            if(!isset($_SESSION['admin']) || !$_SESSION['admin'])
+            {
+                http_response_code(403);
+                die("Forbidden");
+            }
         ?>
     </div>
     <div class="admin-container">
         <h1>Admin Felület</h1>
         <div class="buttons">
             <a href="./admin-felhasznalok.php"><button class="user-management">Felhasználók kezelése</button></a>
-            <a href="./admin-receptek.php"><button class="recipe-management">Receptek kezelése</button></a>
         </div>
         <div class="udvozlo-szoveg">
             <p>Üdvözlünk az admin felületen! Itt kezelheted a felhasználókat és az adatokat.</p>

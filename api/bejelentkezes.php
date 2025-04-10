@@ -23,19 +23,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && str_contains($_SERVER["REQUEST_URI"]
 
     if (empty($hibak)) {
 
-        $stmt = $conn->prepare("SELECT id, vezeteknev, keresztnev, jelszo FROM felhasznalo WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id, vezeteknev, keresztnev, jelszo, `admin` FROM felhasznalo WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
         
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id,$vezeteknev,$keresztnev,  $hashedJelszo);
+            $stmt->bind_result($id,$vezeteknev,$keresztnev, $hashedJelszo,$admin);
             $stmt->fetch();
             
             if (password_verify($jelszo, $hashedJelszo)) {
                 $_SESSION['felhasznalo_id'] = $id;
                 $_SESSION['email'] = $email;
                 $_SESSION['nev'] = $vezeteknev." ".$keresztnev;
+                $_SESSION['admin'] = $admin;
                 echo json_encode(["valasz" => "Sikeres bejelentkezés!"], JSON_UNESCAPED_UNICODE);
                 exit();
             } else {
