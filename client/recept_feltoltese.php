@@ -64,5 +64,6 @@
 
     <script src="../js/recept_feltoltese.js"></script>
     <script src="../js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
