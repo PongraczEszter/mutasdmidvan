@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Ápr 11. 12:10
+-- Létrehozás ideje: 2025. Máj 06. 17:37
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -71,15 +71,7 @@ INSERT INTO `erzekenyseg` (`id`, `etelId`, `allergenId`) VALUES
 (2, 2, 2),
 (3, 3, 1),
 (4, 3, 3),
-(5, 37, 4),
-(6, 44, 1),
-(7, 45, 3),
-(8, 46, 1),
-(9, 3, 4),
-(11, 5, 4),
-(12, 5, 4),
-(13, 6, 4),
-(14, 3, 2);
+(5, 37, 4);
 
 -- --------------------------------------------------------
 
@@ -134,7 +126,10 @@ INSERT INTO `etel` (`id`, `felhasznaloId`, `etkezesId`, `tapgyakId`, `erzekenyse
 (29, 1, 3, 1, 29, 'Diétás francia saláta', 'A diétás franciasaláta első lépéseként a franciasaláta-alapot pár percre forrásban lévő vízbe dobjuk, majd leszűrjük és kihűtjük. A zöld almát meghámozzuk, kivágjuk a magházát és a csemegeuborkákkal együtt akkora kockákra vágjuk, mint amekkora a többi zöldség. Az összes zöldséget és az almát egy tálba rakjuk, majd mehet hozzá a citromlé, a kefir, a mustár, az olaj, só, bors és egy kevés eritrit. Az egészet összekeverjük, és habár akár azonnal fogyasztható, jól áll neki 1-2 óra hűtőben való pihentetés. ', 'francia.jpg'),
 (30, 1, 2, 3, 30, 'Vöröslencse hummusz', 'A lencsét öblítsük át folyó víznél, majd fedő alatt, alacsony hőfokon, enyhén sós vízben főzzük puhára. Ez kb. 15 percet vesz igénybe.\r\n\r\nSzűrjük le, és 15 percig hagyjuk hűlni. Tegyük egy késes aprítóba a tahinivel, a citromlével, a fokhagymával és az ízesítőkkel együtt, és pürésítsük krémesre. Időnként állítsuk le a motort, és kaparásszuk le a tartály oldalára felragadt nagyobb darabokat. \r\n\r\nA folyékonyabb állaghoz járó motor mellett adjunk hozzá egy kevés hideg vizet, egyszerre csak 1 evőkanálnyit (de nem kötelező).\r\n\r\nAzonnal fogyaszthatjuk, a maradékot pedig hűtőben tároljuk. Chipsekhez vagy zöldségekhez mártogatósként, kenyérre kenve szendvicskrémként fogyasszuk.', 'humusz.jpg'),
 (31, 1, 1, 2, 31, 'Roppanos csokis granola', 'Tegyük a magvakat aprítógépbe, és néhány másodperc alatt zúzzuk őket nagyobb darabokra.\r\n\r\nEgy nagyobb tálban keverjük össze a száraz hozzávalókat (a csoki kivételével). Egy kisebb edényben olvasszuk fel a kókuszolajat, keverjük hozzá a juharszirupot és a vaníliakivonatot, majd öntsük őket a zabos keverékre. Alaposan keverjük össze.\r\n\r\nBorítsuk egy sütőpapírral bélelt tepsibe, egyengessük el, és tegyük 170 fokra előmelegített sütőbe. Süssük 10-15 percig, vegyük ki, keverjük át, majd tegyük vissza újabb 10-15 percre.\r\n\r\nHagyjuk a tepsiben teljesen kihűlni, keverjük hozzá a csokidarabokat is, és légmentesen záródó edényben tároljuk.', 'granola.jpg'),
-(32, 1, 2, 2, 32, 'Gyömbéres sárgarépa krémleves', 'Készítsd el a zöldségalaplevet.\r\nEgy nagy lábasban, egy evőkanál olívaolajon kezdd el alacsony lángon pirítani a hagymát.\r\nVágd fel a répát negyed karikákra, és dobd rá a hagymára. Vedd fel a lángot közepesre, és 15 percig pirítsd. Nem kell folyamatosan kevergetni, elég, ha félpercenként keversz rajta egyet. Ha szükségesnek érzed, adj még hozzá egy kevés olívaolajat. Kb. félúton adj hozzá jókora csipet sót, egy teáskanál barna cukrot, az apróra vágott gyömbért és a fokhagymát.\r\nHa a répák jól átsültek, öntsd fel a levest a zöldségalaplével. Ha felforrt, vedd le a lángot alacsonyra, és kissé félrebillentett fedő alatt főzd 15-20 percig. A répának puhának kell lennie, de nem pépesen szétmállón', 'repaleves.jpg');
+(32, 1, 2, 2, 32, 'Gyömbéres sárgarépa krémleves', 'Készítsd el a zöldségalaplevet.\r\nEgy nagy lábasban, egy evőkanál olívaolajon kezdd el alacsony lángon pirítani a hagymát.\r\nVágd fel a répát negyed karikákra, és dobd rá a hagymára. Vedd fel a lángot közepesre, és 15 percig pirítsd. Nem kell folyamatosan kevergetni, elég, ha félpercenként keversz rajta egyet. Ha szükségesnek érzed, adj még hozzá egy kevés olívaolajat. Kb. félúton adj hozzá jókora csipet sót, egy teáskanál barna cukrot, az apróra vágott gyömbért és a fokhagymát.\r\nHa a répák jól átsültek, öntsd fel a levest a zöldségalaplével. Ha felforrt, vedd le a lángot alacsonyra, és kissé félrebillentett fedő alatt főzd 15-20 percig. A répának puhának kell lennie, de nem pépesen szétmállón', 'repaleves.jpg'),
+(35, 8, NULL, NULL, NULL, 'recept', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', NULL),
+(36, 8, NULL, NULL, NULL, 'recept', 'a', NULL),
+(37, 8, NULL, NULL, NULL, 'Próba', 'teszt', NULL);
 
 -- --------------------------------------------------------
 
@@ -186,8 +181,7 @@ INSERT INTO `felhasznalo` (`id`, `email`, `jelszo`, `vezeteknev`, `keresztnev`, 
 (6, 'kissgeza@gmail.com', '$2y$10$WnFj6WSxyud3f67qPTlEDuso9QT2V.dPAxl.efBCUmR5YIDarr4lW', 'Kiss', 'Géza', '2025-04-20 00:00:00', '06201234567', 0),
 (7, 'nagybianka@gmail.com', '$2y$10$gp.aSwRVFj67KNSze6FDO.8qOHPk.efOhreUXuk3WcJ5XAuNyDyQa', 'Bianka', 'Nagy', '2025-04-18 00:00:00', '06202222222', 0),
 (8, 'nagyb@gmail.com', '$2y$10$wJPBSoQHC6/ViAlD7nyn2uu6257OMskZ6MjtdZtRsmD6Xdq4G//7W', 'Nagy', 'Bianka', '2025-04-26 00:00:00', 'undefined', 1),
-(13, 'admin@admin.hu', '$2y$10$YQh8jS4oj2vpdydN4.ErJ.3uU4tx4o.Tp981Z27HXoyNSnGEiLsSi', 'Admin', 'Admin', '2025-04-24 00:00:00', '', 1),
-(14, 'nyarinapsi@gmail.com', '$2y$10$9iALmaVLeU26uOip3ua.jO2UVma7HgSKgAkW1tZaqaic87Tcyi1NS', 'Nyári', 'Napsugár', NULL, NULL, 0);
+(14, 'admin@admin.hu', '$2y$10$7nNwKunAEDk4B1fg9t3o/OUct/4AAkDXfcwoVUHuxJSvrYJ6/2USW', 'Admin', 'Admin', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -242,10 +236,7 @@ INSERT INTO `hozzavalo` (`id`, `etelId`, `nyersanyagId`, `mennyiseg`) VALUES
 (35, 5, 23, 150),
 (36, 34, 27, 1),
 (37, 36, 28, 1),
-(38, 37, 30, 1),
-(39, 44, 31, 21),
-(40, 45, 32, 230),
-(41, 46, 33, 200000);
+(38, 37, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -369,13 +360,13 @@ ALTER TABLE `tapgyak`
 -- AUTO_INCREMENT a táblához `erzekenyseg`
 --
 ALTER TABLE `erzekenyseg`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT a táblához `etel`
 --
 ALTER TABLE `etel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT a táblához `felhasznalo`
@@ -387,13 +378,13 @@ ALTER TABLE `felhasznalo`
 -- AUTO_INCREMENT a táblához `hozzavalo`
 --
 ALTER TABLE `hozzavalo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT a táblához `nyersanyag`
 --
 ALTER TABLE `nyersanyag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
